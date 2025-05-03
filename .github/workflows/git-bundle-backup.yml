@@ -1,19 +1,40 @@
-name: Git Bundle Backup
+# .github/workflows/git-bundle-backup.yml
+
+name: 🔐 Git Bundle Backup mit S3 Upload
 
 on:
   schedule:
-    - cron: '30 2 * * *'
+    - cron: '30 2 * * *'  # täglich um 02:30 UTC
   workflow_dispatch:
 
 jobs:
   backup:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout CoreFlow
-        uses: actions/checkout@v3
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_KEY }}
+      AWS_REGION: "eu-central-1"             # passe ggf. an
+      S3_BUCKET: "coreflow-backups"          # dein Bucket-Name
 
-      - name: Create Git Bundle
-        run: |
-          git bundle create coreflow-backup-$(date +%Y%m%d).bundle --all
-          ls -lh coreflow-backup-*.bundle
+    steps:
+    - name: Checkout CoreFlow
+      uses: actions/checkout@v3
+
+    - name: Configure Git identity
+      run: |
+        git config user.name "coreflow-bot"
+        git config user.email "coreflow@local"
+
+    - name: Create Git Bundle
+      run: |
+        FILENAME=coreflow-backup-$(date +%Y%m%d).bundle
+        git bundle create "$FILENAME" --all
+        echo "BUNDLE_NAME=$FILENAME" >> $GITHUB_ENV
+
+    - name: Upload to S3
+      run: |
+        echo "📤 Lade $BUNDLE_NAME zu S3..."
+        aws s3 cp "$BUNDLE_NAME" s3://$S3_BUCKET/$BUNDLE_NAME
+      run: |
+        aws configure set default.s3.endpoint_url https://s3.wasabisys.com
