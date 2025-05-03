@@ -1,3 +1,5 @@
+# .github/workflows/git-bundle-backup.yml
+
 name: ✨ Git Bundle Backup (FTP Upload mit Telegram)
 
 on:
@@ -17,10 +19,10 @@ jobs:
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
     steps:
-    - name: ✅ Checkout CoreFlow (mit vollständiger Git-Historie)
+    - name: ✅ Checkout full CoreFlow repo
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0
+        fetch-depth: 0  # wichtig für vollständige Bundles inkl. Tags
 
     - name: 💾 Create Git Bundle
       run: |
@@ -28,21 +30,14 @@ jobs:
         git bundle create "$FILENAME" --all
         echo "BUNDLE_NAME=$FILENAME" >> $GITHUB_ENV
 
-    - name: 🚚 Upload via FTP
+    - name: 🚚 Upload Bundle via FTP
       run: |
         sudo apt update && sudo apt install -y lftp
         lftp -u "$FTP_USER","$FTP_PASS" $FTP_HOST -e "put $BUNDLE_NAME; bye"
 
-    - name: 📬 Send Telegram Success Message
-      if: success()
+    - name: 📬 Telegram Notification
       run: |
         curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \
-          -d chat_id="${TELEGRAM_CHAT_ID}" \
-          -d text="✅ Git Bundle Backup erfolgreich: $BUNDLE_NAME"
+        -d chat_id="${TELEGRAM_CHAT_ID}" \
+        -d text="✅ Git Bundle wurde erfolgreich erstellt und hochgeladen: $BUNDLE_NAME"
 
-    - name: ❌ Send Telegram Error Message
-      if: failure()
-      run: |
-        curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \
-          -d chat_id="${TELEGRAM_CHAT_ID}" \
-          -d text="❌ Git Bundle Backup fehlgeschlagen."
