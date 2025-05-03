@@ -1,0 +1,19 @@
+name: Git Bundle Backup
+
+on:
+  schedule:
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout CoreFlow
+        uses: actions/checkout@v3
+
+      - name: Create Git Bundle
+        run: |
+          git bundle create coreflow-backup-$(date +%Y%m%d).bundle --all
+          ls -lh coreflow-backup-*.bundle
