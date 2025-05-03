@@ -1,6 +1,4 @@
-# .github/workflows/git-bundle-backup.yml
-
-name: 🔐 Git Bundle Backup mit S3 Upload
+name: ✨ Git Bundle Backup (FTP Upload mit Telegram)
 
 on:
   schedule:
@@ -12,29 +10,39 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_KEY }}
-      AWS_REGION: "eu-central-1"             # passe ggf. an
-      S3_BUCKET: "coreflow-backups"          # dein Bucket-Name
+      FTP_HOST: ${{ secrets.FTP_HOST }}
+      FTP_USER: ${{ secrets.FTP_USER }}
+      FTP_PASS: ${{ secrets.FTP_PASS }}
+      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
     steps:
-    - name: Checkout CoreFlow
+    - name: ✅ Checkout CoreFlow (mit vollständiger Git-Historie)
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-    - name: Configure Git identity
-      run: |
-        git config user.name "coreflow-bot"
-        git config user.email "coreflow@local"
-
-    - name: Create Git Bundle
+    - name: 💾 Create Git Bundle
       run: |
         FILENAME=coreflow-backup-$(date +%Y%m%d).bundle
         git bundle create "$FILENAME" --all
         echo "BUNDLE_NAME=$FILENAME" >> $GITHUB_ENV
 
-    - name: Upload to S3
+    - name: 🚚 Upload via FTP
       run: |
-        echo "📤 Lade $BUNDLE_NAME zu S3..."
-        aws s3 cp "$BUNDLE_NAME" s3://$S3_BUCKET/$BUNDLE_NAME
+        sudo apt update && sudo apt install -y lftp
+        lftp -u "$FTP_USER","$FTP_PASS" $FTP_HOST -e "put $BUNDLE_NAME; bye"
+
+    - name: 📬 Send Telegram Success Message
+      if: success()
       run: |
-        aws configure set default.s3.endpoint_url https://s3.wasabisys.com
+        curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \
+          -d chat_id="${TELEGRAM_CHAT_ID}" \
+          -d text="✅ Git Bundle Backup erfolgreich: $BUNDLE_NAME"
+
+    - name: ❌ Send Telegram Error Message
+      if: failure()
+      run: |
+        curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \
+          -d chat_id="${TELEGRAM_CHAT_ID}" \
+          -d text="❌ Git Bundle Backup fehlgeschlagen."
