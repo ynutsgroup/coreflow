@@ -19,25 +19,24 @@ jobs:
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
     steps:
-    - name: ✅ Checkout full CoreFlow repo
+    - name: ✅ Checkout full history
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0  # wichtig für vollständige Bundles inkl. Tags
+        fetch-depth: 0
 
-    - name: 💾 Create Git Bundle
+    - name: 📂 Create Git Bundle
       run: |
         FILENAME=coreflow-backup-$(date +%Y%m%d).bundle
         git bundle create "$FILENAME" --all
         echo "BUNDLE_NAME=$FILENAME" >> $GITHUB_ENV
 
-    - name: 🚚 Upload Bundle via FTP
+    - name: 🚚 Upload via FTP
       run: |
         sudo apt update && sudo apt install -y lftp
-        lftp -u "$FTP_USER","$FTP_PASS" $FTP_HOST -e "put $BUNDLE_NAME; bye"
+        lftp -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" -e "put $BUNDLE_NAME; bye"
 
-    - name: 📬 Telegram Notification
+    - name: 📢 Telegram Notify
       run: |
-        curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \
-        -d chat_id="${TELEGRAM_CHAT_ID}" \
-        -d text="✅ Git Bundle wurde erfolgreich erstellt und hochgeladen: $BUNDLE_NAME"
-
+        curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_TOKEN/sendMessage" \
+          -d chat_id="$TELEGRAM_CHAT_ID" \
+          -d text="✅ Git Bundle Backup erfolgreich hochgeladen: $BUNDLE_NAME"
