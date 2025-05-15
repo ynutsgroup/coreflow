@@ -1,0 +1,15 @@
+[0;1;32m●[0m redis-server.service - Advanced key-value store
+     Loaded: loaded (]8;;file://Ubuntu-2404-noble-amd64-base/usr/lib/systemd/system/redis-server.service/usr/lib/systemd/system/redis-server.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Thu 2025-05-15 03:51:57 CEST; 21min ago
+       Docs: ]8;;http://redis.io/documentation,http://redis.io/documentation,]8;;
+             ]8;;man:redis-server(1)man:redis-server(1)]8;;
+   Main PID: 26412 (redis-server)
+     Status: "[0;1;36mReady to accept connections[0m"
+      Tasks: 5 (limit: 76837)
+     Memory: 3.6M (peak: 4.5M)
+        CPU: 2.871s
+     CGroup: /system.slice/redis-server.service
+             └─[0;38;5;245m26412 "/usr/bin/redis-server 127.0.0.1:6379"[0m
+
+May 15 03:51:57 Ubuntu-2404-noble-amd64-base systemd[1]: Starting redis-server.service - Advanced key-value store...
+May 15 03:51:57 Ubuntu-2404-noble-amd64-base systemd[1]: Started redis-server.service - Advanced key-value store.
