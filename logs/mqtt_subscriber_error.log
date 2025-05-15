@@ -1,0 +1,470 @@
+/opt/coreflow/utils/mqtt_subscriber.py:57: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  client = mqtt.Client(client_id=CLIENT_ID, clean_session=False)
+2025-05-15 22:10:09,735 | ERROR | Connection failed with code 5
+2025-05-15 22:10:09,735 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:09,750 | INFO | GPU: 0.0% Temp: 37.0°C Mem: 0.0%
+2025-05-15 22:10:14,735 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:14,778 | INFO | GPU: 0.0% Temp: 37.0°C Mem: 0.0%
+2025-05-15 22:10:15,739 | ERROR | Connection failed with code 5
+2025-05-15 22:10:15,739 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:19,806 | INFO | GPU: 0.0% Temp: 37.0°C Mem: 0.0%
+2025-05-15 22:10:20,739 | INFO | Attempting MQTT reconnection...
+2025-05-15 22:10:22,742 | ERROR | Connection failed with code 5
+2025-05-15 22:10:22,742 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:24,828 | INFO | GPU: 0.0% Temp: 37.0°C Mem: 0.0%
+2025-05-15 22:10:27,743 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:29,858 | INFO | GPU: 0.0% Temp: 37.0°C Mem: 0.0%
+2025-05-15 22:10:31,745 | ERROR | Connection failed with code 5
+2025-05-15 22:10:31,745 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:34,886 | INFO | GPU: 0.0% Temp: 36.0°C Mem: 0.0%
+2025-05-15 22:10:36,746 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:39,908 | INFO | GPU: 0.0% Temp: 36.0°C Mem: 0.0%
+2025-05-15 22:10:44,748 | ERROR | Connection failed with code 5
+2025-05-15 22:10:44,748 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:44,931 | INFO | GPU: 0.0% Temp: 36.0°C Mem: 0.0%
+2025-05-15 22:10:49,749 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:49,953 | INFO | GPU: 0.0% Temp: 36.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:54,975 | INFO | GPU: 0.0% Temp: 36.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:10:59,998 | INFO | GPU: 0.0% Temp: 36.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:05,024 | INFO | GPU: 0.0% Temp: 36.0°C Mem: 0.0%
+2025-05-15 22:11:05,751 | ERROR | Connection failed with code 5
+2025-05-15 22:11:05,751 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:10,046 | INFO | GPU: 0.0% Temp: 35.0°C Mem: 0.0%
+2025-05-15 22:11:10,752 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:15,068 | INFO | GPU: 0.0% Temp: 35.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:20,092 | INFO | GPU: 0.0% Temp: 35.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:25,115 | INFO | GPU: 0.0% Temp: 35.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:30,137 | INFO | GPU: 0.0% Temp: 35.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:35,161 | INFO | GPU: 0.0% Temp: 35.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:40,184 | INFO | GPU: 0.0% Temp: 35.0°C Mem: 0.0%
+2025-05-15 22:11:42,754 | ERROR | Connection failed with code 5
+2025-05-15 22:11:42,754 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:45,209 | INFO | GPU: 0.0% Temp: 35.0°C Mem: 0.0%
+2025-05-15 22:11:47,755 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:50,231 | INFO | GPU: 0.0% Temp: 34.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:11:55,254 | INFO | GPU: 0.0% Temp: 34.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:00,276 | INFO | GPU: 0.0% Temp: 34.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:05,297 | INFO | GPU: 0.0% Temp: 34.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:10,318 | INFO | GPU: 0.0% Temp: 34.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:15,342 | INFO | GPU: 0.0% Temp: 34.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:20,367 | INFO | GPU: 0.0% Temp: 34.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:25,389 | INFO | GPU: 0.0% Temp: 34.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:30,414 | INFO | GPU: 0.0% Temp: 34.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:35,442 | INFO | GPU: 0.0% Temp: 34.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:40,463 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:45,485 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:50,509 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+2025-05-15 22:12:51,757 | ERROR | Connection failed with code 5
+2025-05-15 22:12:51,758 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:12:55,535 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+2025-05-15 22:12:56,758 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:00,556 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:05,579 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:10,601 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:15,624 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:20,653 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:25,681 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:30,705 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:35,726 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:40,750 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:45,772 | INFO | GPU: 0.0% Temp: 33.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:50,794 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:13:55,819 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:00,842 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:05,865 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:10,889 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:15,911 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:20,933 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:25,962 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:30,983 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:36,005 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:41,027 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:46,049 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:51,071 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:14:56,093 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+2025-05-15 22:14:56,761 | ERROR | Connection failed with code 5
+2025-05-15 22:14:56,761 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:01,122 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+2025-05-15 22:15:01,761 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:06,145 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:11,168 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:16,193 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:21,218 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:26,241 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:31,264 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:36,286 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:41,308 | INFO | GPU: 0.0% Temp: 32.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:46,331 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:51,357 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:15:56,380 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:01,411 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:06,433 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:11,457 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:16,481 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:21,503 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:26,518 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:31,543 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:36,563 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:41,591 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:46,619 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:51,643 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:16:56,668 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:01,696 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+2025-05-15 22:17:01,764 | ERROR | Connection failed with code 5
+2025-05-15 22:17:01,764 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:06,727 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+2025-05-15 22:17:06,764 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:11,751 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:16,776 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:21,805 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:26,826 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:31,849 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:36,872 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:41,896 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:46,918 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:51,945 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:17:56,967 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:01,990 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:07,013 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:12,035 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:17,058 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:22,075 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:27,100 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:32,125 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:37,150 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:42,173 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:47,198 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:52,222 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:18:57,246 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:02,268 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+2025-05-15 22:19:06,767 | ERROR | Connection failed with code 5
+2025-05-15 22:19:06,768 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:07,290 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+2025-05-15 22:19:11,768 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:12,312 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:17,335 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:22,358 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:27,386 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:32,412 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:37,435 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:42,460 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:47,482 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:52,507 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:19:57,529 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:02,551 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:07,578 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:12,599 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:17,629 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:22,651 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:27,675 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:32,697 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:37,720 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:42,742 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:47,765 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:52,789 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:20:57,816 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:02,843 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:07,868 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+2025-05-15 22:21:11,771 | ERROR | Connection failed with code 5
+2025-05-15 22:21:11,771 | WARNING | Disconnected from MQTT broker (code: 5)
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:12,892 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+2025-05-15 22:21:16,772 | INFO | Attempting MQTT reconnection...
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:17,915 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:22,937 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:27,961 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:32,986 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:38,008 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:43,033 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:48,057 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:53,078 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:21:58,102 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:22:03,128 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%
+/opt/coreflow/utils/mqtt_subscriber.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z"
+2025-05-15 22:22:08,151 | INFO | GPU: 0.0% Temp: 31.0°C Mem: 0.0%

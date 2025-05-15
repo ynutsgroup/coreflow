@@ -1,0 +1,74 @@
+2025-05-15 03:09:01,848 - INFO - 🛡️ Watchdog gestartet.
+2025-05-15 03:09:01,965 - INFO - 🚀 Starte CoreFlow Prozess...
+2025-05-15 03:09:43,970 - INFO - 🚀 Starte CoreFlow Prozess...
+2025-05-15 03:10:25,975 - INFO - 🚀 Starte CoreFlow Prozess...
+2025-05-15 03:11:07,979 - INFO - 🚀 Starte CoreFlow Prozess...
+2025-05-15 03:11:16,818 - INFO - Signal 2 empfangen, beende Watchdog...
+2025-05-15 17:15:05,327 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:15:10,577 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:15:15,828 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:15:21,087 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:15:26,334 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:15:31,590 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:15:36,827 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:15:42,082 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:15:47,327 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:15:52,598 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:15:57,837 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:03,081 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:08,337 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:13,587 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:18,830 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:24,087 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:29,334 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:34,583 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:39,844 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:45,098 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:50,336 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:16:55,578 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:00,829 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:06,087 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:11,345 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:16,578 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:21,839 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:27,084 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:32,331 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:37,583 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:42,839 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:48,088 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:53,335 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:17:58,591 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:03,827 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:09,089 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:14,333 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:19,585 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:24,833 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:30,100 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:35,342 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:40,579 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:45,836 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:51,081 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:18:56,335 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:01,583 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:06,836 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:12,099 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:17,335 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:22,583 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:27,832 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:33,079 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:38,335 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:43,592 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:48,826 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:54,087 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:19:59,349 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:04,584 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:09,845 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:15,095 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:20,352 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:25,590 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:30,829 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:36,079 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:41,327 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:46,592 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:51,840 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage
+2025-05-15 17:20:57,084 - ERROR - Telegram send failed: 401 Client Error: Unauthorized for url: https://api.telegram.org/bot7868571235:AAEg9zoLrqIqQQl4q_WWLXX35H977O3HBQY/sendMessage

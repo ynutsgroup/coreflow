@@ -1,0 +1,93 @@
+2025-05-15 03:50:52,352 | WARNING | Redis error (attempt 1/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 03:50:53,354 | WARNING | Redis error (attempt 2/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 03:50:54,355 | WARNING | Redis error (attempt 3/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 03:50:54,355 | ERROR | ❌ Failed to send signal after multiple attempts
+2025-05-15 03:52:48,399 | WARNING | Redis error (attempt 1/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 03:52:49,400 | WARNING | Redis error (attempt 2/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 03:52:50,401 | WARNING | Redis error (attempt 3/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 03:52:50,402 | ERROR | ❌ Failed to send signal after multiple attempts
+2025-05-15 03:58:01,774 | WARNING | Redis error (attempt 1/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 03:58:02,775 | WARNING | Redis error (attempt 2/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 03:58:03,776 | WARNING | Redis error (attempt 3/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 03:58:03,777 | ERROR | ❌ Failed to send signal after multiple attempts
+2025-05-15 04:01:33,228 | WARNING | Redis error (attempt 1/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:01:34,229 | WARNING | Redis error (attempt 2/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:01:35,231 | WARNING | Redis error (attempt 3/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:01:35,231 | ERROR | ❌ Failed to send signal after multiple attempts
+2025-05-15 04:06:06,148 | WARNING | Redis error (attempt 1/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:06:07,149 | WARNING | Redis error (attempt 2/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:06:08,151 | WARNING | Redis error (attempt 3/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:06:08,151 | ERROR | ❌ Failed to send signal after multiple attempts
+2025-05-15 04:10:34,681 | WARNING | Redis error (attempt 1/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:10:35,683 | WARNING | Redis error (attempt 2/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:10:36,684 | WARNING | Redis error (attempt 3/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:10:36,685 | ERROR | ❌ Failed to send signal after multiple attempts
+2025-05-15 04:10:55,057 | WARNING | Redis error (attempt 1/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:10:56,058 | WARNING | Redis error (attempt 2/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:10:57,060 | WARNING | Redis error (attempt 3/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:10:57,060 | ERROR | ❌ Failed to send signal after multiple attempts
+2025-05-15 04:17:30,429 | WARNING | Redis error (attempt 1/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:17:31,431 | WARNING | Redis error (attempt 2/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:17:32,432 | WARNING | Redis error (attempt 3/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:17:32,432 | ERROR | ❌ Failed to send signal after multiple attempts
+2025-05-15 04:26:04,261 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T02:26:04.260604Z', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 04:30:16,913 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T02:30:16.912615Z', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 04:56:14,778 | WARNING | Redis error (attempt 1/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:56:15,779 | WARNING | Redis error (attempt 2/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:56:16,781 | WARNING | Redis error (attempt 3/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:56:16,781 | ERROR | ❌ Failed to send signal after multiple attempts
+2025-05-15 04:59:12,303 | WARNING | Redis error (attempt 1/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:59:13,305 | WARNING | Redis error (attempt 2/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:59:14,306 | WARNING | Redis error (attempt 3/3): Error 111 connecting to 78.46.40.171:6379. Connection refused.
+2025-05-15 04:59:14,306 | ERROR | ❌ Failed to send signal after multiple attempts
+2025-05-15 05:02:40,803 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T03:02:40.670593Z', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 05:06:12,287 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T03:06:12.154299Z', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 05:06:47,033 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T03:06:46.944209Z', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 05:09:28,165 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T03:09:28.032011Z', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 05:21:51,709 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T03:21:51.575707+00:00', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 05:23:18,836 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T03:23:18.747671+00:00', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 05:25:31,069 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T03:25:30.935622+00:00', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 05:41:00,845 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T03:41:00.712337+00:00', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 05:41:01,067 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'HOLD', 'price': 1.105, 'timestamp': '2025-05-15T03:41:00.934207+00:00', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 17:56:44,203 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T15:56:44.069248+00:00', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 18:08:29,304 | INFO | 📩 Signal sent: {'version': '1.0', 'symbol': 'EURUSD', 'action': 'BUY', 'price': 1.105, 'timestamp': '2025-05-15T16:08:29.215287+00:00', 'source': 'signal_emitter', 'ftmo_compliant': True}
+2025-05-15 18:54:33,850 - INFO - Signal Emitter started
+2025-05-15 18:54:33,850 - INFO - Emitted signal: 1747328073_0
+2025-05-15 18:54:43,851 - INFO - Emitted signal: 1747328083_1
+2025-05-15 18:54:53,852 - INFO - Emitted signal: 1747328093_2
+2025-05-15 18:55:03,853 - INFO - Emitted signal: 1747328103_3
+2025-05-15 18:55:13,854 - INFO - Emitted signal: 1747328113_4
+2025-05-15 18:55:23,855 - INFO - Emitted signal: 1747328123_5
+2025-05-15 18:55:33,856 - INFO - Emitted signal: 1747328133_6
+2025-05-15 18:55:43,857 - INFO - Emitted signal: 1747328143_7
+2025-05-15 18:55:53,858 - INFO - Emitted signal: 1747328153_8
+2025-05-15 18:56:03,859 - INFO - Emitted signal: 1747328163_9
+2025-05-15 18:56:13,860 - INFO - Emitted signal: 1747328173_10
+2025-05-15 18:56:23,861 - INFO - Emitted signal: 1747328183_11
+2025-05-15 18:56:33,862 - INFO - Emitted signal: 1747328193_12
+2025-05-15 18:56:43,863 - INFO - Emitted signal: 1747328203_13
+2025-05-15 18:56:53,864 - INFO - Emitted signal: 1747328213_14
+2025-05-15 18:57:03,865 - INFO - Emitted signal: 1747328223_15
+2025-05-15 18:57:13,867 - INFO - Emitted signal: 1747328233_16
+2025-05-15 18:57:23,868 - INFO - Emitted signal: 1747328243_17
+2025-05-15 18:57:33,869 - INFO - Emitted signal: 1747328253_18
+2025-05-15 18:57:43,870 - INFO - Emitted signal: 1747328263_19
+2025-05-15 18:57:53,871 - INFO - Emitted signal: 1747328273_20
+2025-05-15 18:58:03,872 - INFO - Emitted signal: 1747328283_21
+2025-05-15 18:58:13,873 - INFO - Emitted signal: 1747328293_22
+2025-05-15 18:58:20,570 - INFO - Signal Emitter stopped
+2025-05-15 19:18:37,541 - INFO - Signal Emitter started
+2025-05-15 19:18:37,541 - INFO - Emitted signal: 1747329517_0
+2025-05-15 19:18:47,542 - INFO - Emitted signal: 1747329527_1
+2025-05-15 19:18:57,543 - INFO - Emitted signal: 1747329537_2
+2025-05-15 19:19:07,544 - INFO - Emitted signal: 1747329547_3
+2025-05-15 19:19:17,545 - INFO - Emitted signal: 1747329557_4
+2025-05-15 19:19:27,546 - INFO - Emitted signal: 1747329567_5
+2025-05-15 19:19:37,547 - INFO - Emitted signal: 1747329577_6
+2025-05-15 19:19:47,548 - INFO - Emitted signal: 1747329587_7
+2025-05-15 19:19:57,549 - INFO - Emitted signal: 1747329597_8
+2025-05-15 19:20:07,551 - INFO - Emitted signal: 1747329607_9
+2025-05-15 19:20:17,552 - INFO - Emitted signal: 1747329617_10
+2025-05-15 19:20:27,553 - INFO - Emitted signal: 1747329627_11
+2025-05-15 19:20:37,554 - INFO - Emitted signal: 1747329637_12
+2025-05-15 19:20:40,197 - INFO - Signal Emitter stopped
