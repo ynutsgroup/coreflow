@@ -1,131 +1,174 @@
 #!/usr/bin/env python3
-"""FTMO-konformer Signal Emitter für Trading-Systeme"""
+# -*- coding: utf-8 -*-
+# CoreFlow Signal Receiver v5.0 (FTMO/KI Ready)
 
-import json
-import logging
+import os
 import sys
+import json
 import time
-from typing import Dict, Any, Literal
-
 import redis
-from core.config import Config
+import MetaTrader5 as mt5
+from dotenv import load_dotenv
+from datetime import datetime
+from cryptography.fernet import Fernet
+import logging
+import requests
 
-# FTMO-spezifische Konstanten
-MAX_RISK_PERCENT = 1.0  # Maximal 1% Risiko pro Trade
-TRADE_ACTIONS = Literal["BUY", "SELL", "HOLD"]
+# === Load Configuration ===
+BASE_DIR = "/opt/coreflow"
+ENV_FILE = os.path.join(BASE_DIR, ".env")
 
-class FTMOEmitter:
-    def __init__(self):
-        self.logger = self._setup_ftmo_logging()
-        self.redis = self._init_secure_redis()
-        self.trade_count = 0
+if not os.path.exists(ENV_FILE):
+    print(f"❌ .env file not found at {ENV_FILE}")
+    sys.exit(1)
 
-    def _setup_ftmo_logging(self) -> logging.Logger:
-        """FTMO-konforme Logging-Konfiguration"""
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s|%(levelname)s|%(message)s',
-            handlers=[
-                logging.FileHandler(f"{Config.LOG_DIR}/ftmo_emitter.log"),
-                logging.StreamHandler()
-            ]
-        )
-        return logging.getLogger('FTMO_Emitter')
+load_dotenv(ENV_FILE)
 
-    def _init_secure_redis(self) -> redis.Redis:
-        """Sichere Redis-Verbindung mit FTMO-Anforderungen"""
-        return redis.Redis(
-            host=Config.REDIS_HOST,
-            port=Config.REDIS_PORT,
-            password=Config.REDIS_PASSWORD,
-            ssl=True,
-            ssl_cert_reqs='required',
-            socket_timeout=5,
-            socket_connect_timeout=3,
-            decode_responses=False  # Sicherheit: Rohbytes
-        )
+# MT5 Config
+TRADE_MODE = os.getenv("TRADE_MODE", "TEST").upper()
+MT5_LOGIN = int(os.getenv(f"MT5_{TRADE_MODE}_LOGIN"))
+MT5_PASSWORD = os.getenv(f"MT5_{TRADE_MODE}_PASSWORD")
+MT5_SERVER = os.getenv(f"MT5_{TRADE_MODE}_SERVER")
 
-    def _validate_ftmo_rules(self, action: str, price: float) -> bool:
-        """FTMO-Regelvalidierung"""
-        if action not in TRADE_ACTIONS.__args__:
-            self.logger.error(f"Invalid FTMO action: {action}")
-            return False
-            
-        if price <= 0:
-            self.logger.error("Price must be positive")
-            return False
-            
-        if self.trade_count >= 100:  # FTMO Max Trades/Day
-            self.logger.warning("FTMO trade limit reached")
-            return False
-            
-        return True
+# Redis Config
+REDIS_HOST = os.getenv("REDIS_HOST")
+REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
+REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")
+REDIS_CHANNEL = os.getenv("REDIS_CHANNEL", "trading_signals")
+REDIS_SSL = os.getenv("REDIS_SSL", "false").lower() == "true"
 
-    def _create_ftmo_message(self, symbol: str, action: str, price: float) -> Dict[str, Any]:
-        """FTMO-konforme Nachrichtenstruktur"""
-        return {
-            "version": "1.0",
-            "account": Config.FTMO_ACCOUNT_ID,
-            "symbol": symbol.upper(),
-            "action": action,
-            "price": round(float(price), 5),
-            "timestamp": int(time.time()),
-            "risk": MAX_RISK_PERCENT,
-            "metadata": {
-                "source": "coreflow",
-                "compliance": "ftmo-v2"
-            }
+# Security
+ENCRYPTION_KEY = os.getenv("ENCRYPTION_KEY")
+if not ENCRYPTION_KEY:
+    print("❌ ENCRYPTION_KEY missing in .env!")
+    sys.exit(1)
+cipher = Fernet(ENCRYPTION_KEY.encode())
+
+# Telegram Config
+TELEGRAM_ENABLED = os.getenv("TELEGRAM_ENABLED", "false").lower() == "true"
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+
+# === Logging ===
+logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
+
+# === Redis Connection ===
+try:
+    redis_client = redis.StrictRedis(
+        host=REDIS_HOST,
+        port=REDIS_PORT,
+        password=REDIS_PASSWORD,
+        ssl=REDIS_SSL,
+        decode_responses=True,
+        socket_timeout=10,
+        socket_keepalive=True
+    )
+    redis_client.ping()
+except redis.ConnectionError as e:
+    logging.critical(f"❌ Redis connection error: {e}")
+    sys.exit(1)
+
+# === MT5 Connection ===
+if not mt5.initialize():
+    logging.critical(f"❌ MT5 initialization failed: {mt5.last_error()}")
+    sys.exit(1)
+
+if not mt5.login(MT5_LOGIN, MT5_PASSWORD, MT5_SERVER):
+    logging.critical(f"❌ MT5 login failed: {mt5.last_error()}")
+    mt5.shutdown()
+    sys.exit(1)
+
+logging.info(f"✅ Connected to MT5 in {TRADE_MODE} mode")
+
+# === Telegram Notification ===
+def send_telegram(message):
+    if not TELEGRAM_ENABLED:
+        return
+    try:
+        url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+        payload = {
+            "chat_id": TELEGRAM_CHAT_ID,
+            "text": message,
+            "parse_mode": "Markdown"
+        }
+        requests.post(url, json=payload, timeout=10)
+    except Exception as e:
+        logging.warning(f"⚠️ Telegram error: {e}")
+
+# === Signal Processor ===
+def process_signal(data):
+    try:
+        decrypted = cipher.decrypt(data.encode()).decode()
+        signal = json.loads(decrypted)
+
+        required = ["symbol", "action", "price", "stop_loss", "take_profit", "confidence", "timestamp"]
+        for field in required:
+            if field not in signal:
+                raise ValueError(f"Missing field: {field}")
+
+        symbol = signal["symbol"]
+        action = signal["action"].upper()
+        price = float(signal["price"])
+        stop_loss = int(signal["stop_loss"])
+        take_profit = int(signal["take_profit"])
+        confidence = float(signal["confidence"])
+
+        if confidence < float(os.getenv("MIN_CONFIDENCE", 0.75)):
+            logging.warning(f"⚠️ Confidence {confidence} below minimum threshold")
+            return
+
+        # Prepare MT5 Order
+        lot_size = 0.1  # Default lot size; implement risk-based calculation if needed
+        order_type = mt5.ORDER_TYPE_BUY if action == "BUY" else mt5.ORDER_TYPE_SELL
+
+        request = {
+            "action": mt5.TRADE_ACTION_DEAL,
+            "symbol": symbol,
+            "volume": lot_size,
+            "type": order_type,
+            "price": price,
+            "sl": price - (stop_loss * 0.0001) if action == "BUY" else price + (stop_loss * 0.0001),
+            "tp": price + (take_profit * 0.0001) if action == "BUY" else price - (take_profit * 0.0001),
+            "deviation": 10,
+            "magic": 20240615,
+            "comment": f"CFv5 | Confidence: {confidence:.2%}",
+            "type_filling": mt5.ORDER_FILLING_FOK
         }
 
-    def emit_signal(self, symbol: str, action: str, price: str) -> bool:
-        """
-        Sendet FTMO-konformes Signal
-        
-        Args:
-            symbol: Trading-Symbol (z.B. 'EURUSD')
-            action: BUY/SELL/HOLD
-            price: Ausführungspreis
-            
-        Returns:
-            bool: True wenn FTMO-konform gesendet
-        """
-        try:
-            price_float = float(price)
-            if not self._validate_ftmo_rules(action, price_float):
-                return False
+        result = mt5.order_send(request)
+        if result.retcode != mt5.TRADE_RETCODE_DONE:
+            raise RuntimeError(f"Order failed: {result.comment}")
 
-            message = self._create_ftmo_message(symbol, action, price_float)
-            serialized = json.dumps(message).encode('utf-8')
-            
-            self.redis.publish(Config.REDIS_CHANNEL, serialized)
-            self.trade_count += 1
-            
-            self.logger.info(
-                "FTMO_SIGNAL|%s|%s|%.5f|%d",
-                message['symbol'], 
-                message['action'],
-                message['price'],
-                message['timestamp']
-            )
-            return True
-            
-        except ValueError:
-            self.logger.error("Invalid price format")
-        except redis.RedisError as e:
-            self.logger.error(f"Redis error: {str(e)}")
-        except Exception as e:
-            self.logger.critical(f"Unexpected error: {str(e)}")
-        
-        return False
+        msg = (
+            f"✅ Trade Executed\n"
+            f"Symbol: {symbol}\n"
+            f"Action: {action}\n"
+            f"Price: {price}\n"
+            f"SL: {request['sl']}\n"
+            f"TP: {request['tp']}\n"
+            f"Lot: {lot_size}\n"
+            f"Confidence: {confidence:.2%}"
+        )
+        logging.info(msg)
+        send_telegram(msg)
 
-def main():
-    if len(sys.argv) != 4:
-        print("Usage: ftmo_emitter.py <SYMBOL> <ACTION> <PRICE>")
-        sys.exit(1)
+    except Exception as e:
+        logging.error(f"❌ Signal Processing Error: {e}")
+        send_telegram(f"❌ Signal Processing Error: {e}")
 
-    emitter = FTMOEmitter()
-    success = emitter.emit_signal(sys.argv[1], sys.argv[2], sys.argv[3])
-    sys.exit(0 if success else 1)
-
+# === Main Receiver Loop ===
 if __name__ == "__main__":
-    main()
+    pubsub = redis_client.pubsub()
+    pubsub.subscribe(REDIS_CHANNEL)
+    logging.info(f"📡 Listening on Redis Channel: {REDIS_CHANNEL}")
+
+    try:
+        for message in pubsub.listen():
+            if message["type"] == "message":
+                process_signal(message["data"])
+    except KeyboardInterrupt:
+        logging.info("🛑 Graceful shutdown requested")
+    finally:
+        if mt5.initialized():
+            mt5.shutdown()
+        logging.info("🚪 Signal Receiver stopped")

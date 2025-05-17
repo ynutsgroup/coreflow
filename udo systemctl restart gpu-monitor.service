@@ -1,0 +1,11 @@
+[0;1;32m●[0m gpu-monitor.service - GPU Monitoring Service
+     Loaded: loaded (]8;;file://Ubuntu-2404-noble-amd64-base/etc/systemd/system/gpu-monitor.service/etc/systemd/system/gpu-monitor.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Thu 2025-05-15 22:51:11 CEST; 25ms ago
+   Main PID: 232747 (python)
+      Tasks: 1 (limit: 76837)
+     Memory: 2.9M (peak: 2.9M)
+        CPU: 21ms
+     CGroup: /system.slice/gpu-monitor.service
+             └─[0;38;5;245m232747 /opt/coreflow/venv/bin/python /opt/coreflow/utils/gpu_monitor.py[0m
+
+May 15 22:51:11 Ubuntu-2404-noble-amd64-base systemd[1]: Started gpu-monitor.service - GPU Monitoring Service.
