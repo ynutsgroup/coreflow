@@ -1,0 +1,15 @@
+[0;1;31m×[0m redis-server.service - Advanced key-value store
+     Loaded: loaded (]8;;file://Ubuntu-2404-noble-amd64-base/usr/lib/systemd/system/redis-server.service/usr/lib/systemd/system/redis-server.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Fri 2025-05-16 19:38:47 CEST; 59s ago
+   Duration: 1d 14h 54min 29.888s
+       Docs: ]8;;http://redis.io/documentation,http://redis.io/documentation,]8;;
+             ]8;;man:redis-server(1)man:redis-server(1)]8;;
+    Process: 314668 ExecStart=/usr/bin/redis-server /etc/redis/redis.conf --supervised systemd --daemonize no [0;1;31m(code=exited, status=1/FAILURE)[0m
+   Main PID: 314668 (code=exited, status=1/FAILURE)
+     Status: "[0;1;36mRedis is loading...[0m"
+        CPU: 37ms
+
+May 16 19:38:47 Ubuntu-2404-noble-amd64-base systemd[1]: redis-server.service: Scheduled restart job, restart counter is at 5.
+May 16 19:38:47 Ubuntu-2404-noble-amd64-base systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mredis-server.service: Start request repeated too quickly.[0m
+May 16 19:38:47 Ubuntu-2404-noble-amd64-base systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mredis-server.service: Failed with result 'exit-code'.[0m
+May 16 19:38:47 Ubuntu-2404-noble-amd64-base systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start redis-server.service - Advanced key-value store.[0m

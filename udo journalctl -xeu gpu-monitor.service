@@ -1,0 +1,14 @@
+[0;1;31m×[0m gpu-monitor.service - GPU Monitoring Service
+     Loaded: loaded (]8;;file://Ubuntu-2404-noble-amd64-base/etc/systemd/system/gpu-monitor.service/etc/systemd/system/gpu-monitor.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Thu 2025-05-15 22:41:46 CEST; 45s ago
+   Duration: 65ms
+   Main PID: 231269 (code=exited, status=1/FAILURE)
+        CPU: 65ms
+
+May 15 22:41:46 Ubuntu-2404-noble-amd64-base systemd[1]: gpu-monitor.service: Scheduled restart job, restart counter is at 5.
+May 15 22:41:46 Ubuntu-2404-noble-amd64-base systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mgpu-monitor.service: Start request repeated too quickly.[0m
+May 15 22:41:46 Ubuntu-2404-noble-amd64-base systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mgpu-monitor.service: Failed with result 'exit-code'.[0m
+May 15 22:41:46 Ubuntu-2404-noble-amd64-base systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start gpu-monitor.service - GPU Monitoring Service.[0m
+May 15 22:41:47 Ubuntu-2404-noble-amd64-base systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mgpu-monitor.service: Start request repeated too quickly.[0m
+May 15 22:41:47 Ubuntu-2404-noble-amd64-base systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mgpu-monitor.service: Failed with result 'exit-code'.[0m
+May 15 22:41:47 Ubuntu-2404-noble-amd64-base systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start gpu-monitor.service - GPU Monitoring Service.[0m
