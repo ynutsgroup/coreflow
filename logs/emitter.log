@@ -1,0 +1,56 @@
+2025-05-26 00:27:08,155 | WARNING  | CoreFlow | Warning: python-dotenv not installed, using basic env
+2025-05-26 00:27:08,155 | ERROR    | CoreFlow | Missing required config: HMAC_SECRET
+2025-05-26 00:27:27,343 | WARNING  | CoreFlow | Warning: python-dotenv not installed, using basic env
+2025-05-26 00:27:27,344 | ERROR    | CoreFlow | Missing required config: HMAC_SECRET
+2025-05-26 00:34:49,621 | CRITICAL | CoreFlow | Redis-Verbindung fehlgeschlagen: Error -2 connecting to 127.0.0.1         # Redis läuft lokal auf Linux:6379. Name or service not known.
+2025-05-26 00:34:49,622 | CRITICAL | CoreFlow | Systemfehler: Error -2 connecting to 127.0.0.1         # Redis läuft lokal auf Linux:6379. Name or service not known.
+2025-05-26 00:38:39,213 | CRITICAL | CoreFlow | Redis-Verbindung fehlgeschlagen: Error -2 connecting to 127.0.0.1         # Redis läuft lokal auf Linux:6379. Name or service not known.
+2025-05-26 00:38:39,213 | CRITICAL | CoreFlow | Systemfehler: Error -2 connecting to 127.0.0.1         # Redis läuft lokal auf Linux:6379. Name or service not known.
+2025-05-26 00:41:43,872 | WARNING  | CoreFlow | Warning: python-dotenv not installed, using basic env
+2025-05-26 00:41:46,890 | ERROR    | CoreFlow | Emission failed: Error -2 connecting to 127.0.0.1         # Redis läuft lokal auf Linux:6379. Name or service not known.
+2025-05-26 00:41:46,890 | CRITICAL | CoreFlow | System failure: Signal emission failed
+2025-05-26 00:42:04,948 | WARNING  | CoreFlow | Warning: python-dotenv not installed, using basic env
+2025-05-26 00:42:07,966 | ERROR    | CoreFlow | Emission failed: Error -2 connecting to 127.0.0.1         # Redis läuft lokal auf Linux:6379. Name or service not known.
+2025-05-26 00:42:07,966 | CRITICAL | CoreFlow | System failure: Signal emission failed
+2025-05-26 00:50:33,996 | WARNING  | CoreFlow | Warning: python-dotenv not installed, using basic env
+2025-05-26 00:50:37,015 | ERROR    | CoreFlow | Emission failed: Error -2 connecting to 127.0.0.1         # Redis läuft lokal auf Linux:6379. Name or service not known.
+2025-05-26 00:50:37,016 | CRITICAL | CoreFlow | System failure: Signal emission failed
+2025-05-26 00:58:35,059 | WARNING  | CoreFlow | Warning: python-dotenv not installed, using basic env
+2025-05-26 00:58:35,074 | INFO     | CoreFlow | Emitted BTCUSD 2025-05-25T22:58:35.060031
+2025-05-26 00:59:26,928 | INFO     | CoreFlow | Signal gesendet: BTCUSD um 2025-05-25T22:59:26.915064
+2025-05-26 01:00:40,756 | WARNING  | CoreFlow | Redis connection attempt 1 failed
+2025-05-26 01:00:41,758 | WARNING  | CoreFlow | Redis connection attempt 2 failed
+2025-05-26 01:00:43,760 | WARNING  | CoreFlow | Redis connection attempt 3 failed
+2025-05-26 01:00:43,760 | CRITICAL | CoreFlow | Max connection attempts reached
+2025-05-26 01:04:10,817 | WARNING  | CoreFlow | Redis connection attempt 1 failed
+2025-05-26 01:04:11,819 | WARNING  | CoreFlow | Redis connection attempt 2 failed
+2025-05-26 01:04:13,821 | WARNING  | CoreFlow | Redis connection attempt 3 failed
+2025-05-26 01:04:13,821 | CRITICAL | CoreFlow | Max connection attempts reached
+2025-05-26 01:04:30,182 | WARNING  | CoreFlow | Redis connection attempt 1 failed
+2025-05-26 01:04:31,184 | WARNING  | CoreFlow | Redis connection attempt 2 failed
+2025-05-26 01:04:33,185 | WARNING  | CoreFlow | Redis connection attempt 3 failed
+2025-05-26 01:04:33,185 | CRITICAL | CoreFlow | Max connection attempts reached
+2025-05-26 01:05:27,108 | WARNING  | CoreFlow | Redis connection attempt 1 failed
+2025-05-26 01:05:28,110 | WARNING  | CoreFlow | Redis connection attempt 2 failed
+2025-05-26 01:05:30,112 | WARNING  | CoreFlow | Redis connection attempt 3 failed
+2025-05-26 01:05:30,112 | CRITICAL | CoreFlow | Max connection attempts reached
+2025-05-26 01:08:48,768 | INFO     | ✅ Signal gesendet an Redis-Channel: trading_signals
+2025-05-26 01:09:24,138 | INFO     | ✅ Signal gesendet an Redis-Channel: trading_signals
+2025-05-26 01:10:31,113 | INFO     | ✅ Signal gesendet an Redis-Channel: trading_signals
+2025-05-26 01:23:47,988 | INFO | ✅ Signal gesendet
+2025-05-26 01:48:56,665 | INFO | ✅ Signal gesendet
+2025-05-28 22:06:24,760 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:06:24,974 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:06:25,184 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:06:25,388 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:06:25,580 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:19:19,839 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:19:20,061 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:19:20,251 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:19:20,452 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:19:20,654 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:23:19,838 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:23:20,057 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:23:20,264 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:23:20,457 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-05-28 22:23:20,689 | ERROR | ❌ Fehler beim Senden: Error 111 connecting to 127.0.0.1:6379. Connection refused.

@@ -1,0 +1,18 @@
+[Unit]
+Description=CoreFlow Bridge (Minimal Config)
+After=network.target
+
+[Service]
+User=coreflow
+ExecStart=/opt/coreflow/.venv/bin/python3 /opt/coreflow/bridge/redis_to_zmq_bridge.py
+Restart=on-failure
+EnvironmentFile=/opt/coreflow/.env
+Environment=ZMQ_TARGET=tcp://127.0.0.1:5556
+Environment=REDIS_HOST=localhost
+Environment=LOG_DIR=/opt/coreflow/logs
+Environment=REDIS_HOST=localhost
+Environment=REDIS_PORT=6379
+Environment=ZMQ_ADDR=tcp://127.0.0.1:5556
+Environment=ZMQ_TARGET=tcp://127.0.0.1:5556
+[Install]
+WantedBy=multi-user.target
