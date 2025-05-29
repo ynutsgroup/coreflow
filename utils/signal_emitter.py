@@ -1,81 +1,71 @@
+
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# CoreFlow Test Signal Sender v1.0
+# CoreFlow Signal Emitter – Plattformunabhängig
 
 import os
-import sys
 import json
+import logging
 import redis
-from datetime import datetime
-from dotenv import load_dotenv
+from pathlib import Path
 from cryptography.fernet import Fernet
+import hmac
+import hashlib
+from datetime import datetime
+import socket
 
-# --- Load Configuration ---
-BASE_DIR = "/opt/coreflow"
-ENV_FILE = os.path.join(BASE_DIR, ".env")
-if not os.path.exists(ENV_FILE):
-    print(f"❌ .env file not found at {ENV_FILE}")
-    sys.exit(1)
+# ==== Umgebungsvariablen ====
+ENV_PATH = "/opt/coreflow/.env"
+KEY_PATH = "/opt/coreflow/.env.key"
+LOG_DIR = Path("/opt/coreflow/logs")
+LOG_DIR.mkdir(parents=True, exist_ok=True)
 
-load_dotenv(ENV_FILE)
+# ==== .env manuell laden ====
+def load_env(path):
+    with open(path) as f:
+        for line in f:
+            if line.strip() and not line.startswith('#'):
+                key, val = line.strip().split('=', 1)
+                os.environ[key] = val
 
-REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
-REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
-REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", "")
-REDIS_CHANNEL = os.getenv("REDIS_CHANNEL", "trading_signals")
-ENCRYPTION_KEY = os.getenv("ENCRYPTION_KEY")
+load_env(ENV_PATH)
 
-if not ENCRYPTION_KEY:
-    print("❌ ENCRYPTION_KEY missing in .env!")
-    sys.exit(1)
+# ==== Logging ====
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s | %(levelname)s | %(message)s',
+    handlers=[
+        logging.FileHandler(LOG_DIR / "emitter.log", encoding="utf-8"),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger("CoreFlowEmitter")
 
-cipher = Fernet(ENCRYPTION_KEY.encode())
+# ==== Fernet + HMAC ====
+fernet = Fernet(os.getenv("FERNET_KEY").encode())
+hmac_secret = os.getenv("HMAC_SECRET").encode()
+
+# ==== Redis ====
+r = redis.Redis(
+    host=os.getenv("REDIS_HOST", "localhost"),
+    port=int(os.getenv("REDIS_PORT", 6379)),
+    password=os.getenv("REDIS_PASSWORD"),
+    decode_responses=False
+)
+
+# ==== Signal erzeugen ====
+signal_data = {
+    "symbol": "BTCUSD",
+    "action": "BUY",
+    "volume": 0.1,
+    "timestamp": datetime.utcnow().isoformat(),
+    "source": socket.gethostname()
+}
+
+encrypted = fernet.encrypt(json.dumps(signal_data).encode())
+signature = hmac.new(hmac_secret, encrypted, hashlib.sha256).hexdigest()
 
 try:
-    redis_client = redis.StrictRedis(
-        host=REDIS_HOST,
-        port=REDIS_PORT,
-        password=REDIS_PASSWORD,
-        decode_responses=True,
-        socket_timeout=10,
-        socket_keepalive=True
-    )
-    redis_client.ping()
+    r.publish(os.getenv("REDIS_CHANNEL", "trading_signals"), encrypted)
+    logger.info("✅ Signal gesendet")
 except Exception as e:
-    print(f"❌ Redis connection failed: {e}")
-    sys.exit(1)
-
-# --- Build and Send Test Signal ---
-def send_test_signal():
-    signal = {
-        "symbol": "BTCUSD",
-        "action": "BUY",
-        "price": 103500.0,
-        "stop_loss": 50,
-        "take_profit": 100,
-        "confidence": 0.85,
-        "strategy": "TEST_SIGNAL_V1",
-        "timestamp": datetime.utcnow().isoformat(),
-        "version": "5.1"
-    }
-
-    try:
-        payload = json.dumps(signal, ensure_ascii=False)
-        encrypted_payload = cipher.encrypt(payload.encode()).decode()
-
-        # Publish to Redis
-        redis_client.publish(REDIS_CHANNEL, encrypted_payload)
-
-        # Output Results
-        print(f"✅ Test Signal Sent on Channel: {REDIS_CHANNEL}")
-        print(f"🔐 Encrypted Payload:\n{encrypted_payload}\n")
-        print(f"📖 Decrypted JSON:\n{json.dumps(signal, indent=4)}")
-
-        return True
-
-    except Exception as e:
-        print(f"❌ Failed to send test signal: {str(e)}")
-        return False
-
-if __name__ == "__main__":
-    send_test_signal()
+    logger.error(f"❌ Fehler beim Senden: {str(e)}")

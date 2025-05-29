@@ -1,0 +1,29 @@
+[Unit]
+Description=CoreFlow SignalEmitter (Redis Stream)
+Documentation=https://github.com/ihre-repo/coreflow
+After=network.target redis-server.service
+Requires=redis-server.service
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=coreflow
+Group=coreflow
+WorkingDirectory=/opt/coreflow
+ExecStart=/opt/coreflow/.venv/bin/python3 /opt/coreflow/emitter/signal_emitter_stream.py
+EnvironmentFile=/opt/coreflow/.env
+Restart=always
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=coreflow-signal-emitter
+Environment="PYTHONUNBUFFERED=1"
+Environment="PYTHONPATH=/opt/coreflow"
+LimitNOFILE=65536
+CPUQuota=200%
+MemoryHigh=512M
+MemoryMax=1G
+
+[Install]
+WantedBy=multi-user.target

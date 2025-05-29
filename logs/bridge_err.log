@@ -1,0 +1,2 @@
+/opt/coreflow/bridge/redis_to_zmq_bridge.py:50: DeprecationWarning: Call to '__init__' function with deprecated usage of input argument/s 'retry_on_timeout'. (TimeoutError is included by default.) -- Deprecated since version 6.0.0.
+  r = redis.Redis(

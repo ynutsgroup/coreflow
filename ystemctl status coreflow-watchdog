@@ -1,0 +1,11 @@
+[0;1;32m●[0m coreflow-watchdog.service - CoreFlow Trading Watchdog
+     Loaded: loaded (]8;;file://Ubuntu-2404-noble-amd64-base/etc/systemd/system/coreflow-watchdog.service/etc/systemd/system/coreflow-watchdog.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Tue 2025-05-20 20:45:55 CEST; 11ms ago
+   Main PID: 849869 (python)
+      Tasks: 1 (limit: 76837)
+     Memory: 3.3M (peak: 3.3M)
+        CPU: 9ms
+     CGroup: /system.slice/coreflow-watchdog.service
+             └─[0;38;5;245m849869 /opt/coreflow/.venv/bin/python /opt/coreflow/core/coreflow_watchdog.py[0m
+
+May 20 20:45:55 Ubuntu-2404-noble-amd64-base systemd[1]: Started coreflow-watchdog.service - CoreFlow Trading Watchdog.
