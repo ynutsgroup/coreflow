@@ -1,0 +1,9 @@
+# CoreFlow .gitignore
+__pycache__/
+*.pyc
+*.log
+.venv/
+.env
+.env.*
+*.zip
+logs/
