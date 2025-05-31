@@ -1,0 +1,10 @@
+{
+  "id": "TRADE_1748630937_eb15",
+  "type": "heartbeat",
+  "timestamp": 1748630937.022906,
+  "asset": "SYSTEM",
+  "price": 0.0,
+  "reason": "system_check",
+  "strategy": "",
+  "redis_used": true
+}

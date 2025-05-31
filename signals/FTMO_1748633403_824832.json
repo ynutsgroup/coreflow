@@ -1,0 +1,25 @@
+{
+  "version": "2.1",
+  "id": "FTMO_1748633403_824832",
+  "type": "trade_entry",
+  "timestamp": 1748633403.621219,
+  "datetime": "2025-05-30T19:30:03.621219+00:00",
+  "strategy": "FTMO_Challenge_v2",
+  "instrument": "EURUSD",
+  "price": 1.085,
+  "data": {
+    "action": "entry",
+    "instrument": "EURUSD",
+    "price": 1.085,
+    "timestamp": 1748633403.621204
+  },
+  "metadata": {
+    "stop_loss": 1.082,
+    "take_profit": 1.09,
+    "risk_percentage": 0.01,
+    "size": 10000,
+    "reason": "Breakout strategy",
+    "risk_reward_ratio": 1.6666666666667653
+  },
+  "ftmo_compliant": true
+}

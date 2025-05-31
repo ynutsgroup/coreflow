@@ -1,0 +1,23 @@
+{
+  "version": "2.1",
+  "id": "FTMO_1748633403_c26888",
+  "type": "heartbeat",
+  "timestamp": 1748633403.6213768,
+  "datetime": "2025-05-30T19:30:03.621376+00:00",
+  "strategy": "FTMO_Challenge_v2",
+  "instrument": null,
+  "price": null,
+  "data": {
+    "status": "active",
+    "daily_trades": 1,
+    "remaining_trades": 9,
+    "load": [
+      0.24462890625,
+      0.240234375,
+      0.20654296875
+    ],
+    "timestamp": "2025-05-30T19:30:03.621364+00:00"
+  },
+  "metadata": {},
+  "ftmo_compliant": true
+}

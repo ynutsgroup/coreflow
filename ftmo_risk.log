@@ -1,0 +1,16 @@
+2025-05-31 04:59:39,187 - FTMO_RiskManager - INFO - FTMO Risk Manager initialized with config: {'TELEGRAM_CHAT_ID': '1820797607', 'MAX_DAILY_LOSS': 0.05, 'MAX_OVERALL_LOSS': 0.1, 'MAX_DAILY_TRADES': 5, 'MAX_RISK_PER_TRADE': 0.02, 'STARTING_BALANCE': 100000.0, 'ALERT_THRESHOLD': 0.75}
+2025-05-31 04:59:39,187 - FTMO_RiskManager - INFO - Trade registered: Value 1500.00 | Risk 1.00% | Daily P/L 1500.00
+2025-05-31 04:59:39,187 - FTMO_RiskManager - INFO - Trade registered: Value -2000.00 | Risk -2.00% | Daily P/L -500.00
+2025-05-31 04:59:39,260 - FTMO_RiskManager - INFO - Telegram alert sent: Risk 5.00% exceeds max 2.00%
+2025-05-31 04:59:39,260 - FTMO_RiskManager - WARNING - Trade rejected: Risk 5.00% exceeds max 2.00%
+2025-05-31 04:59:39,260 - FTMO_RiskManager - INFO - Daily stats: {'trades': 2, 'loss': -2000.0, 'profit': 1500.0, 'net': -500.0, 'remaining_trades': 3, 'remaining_daily_loss': 3000.0}
+2025-05-31 04:59:39,280 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7e1f24927ec0>
+2025-05-31 04:59:39,281 - asyncio - ERROR - Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7e1f24961130>, 196583.859146393)])']
+connector: <aiohttp.connector.TCPConnector object at 0x7e1f24927d10>
+2025-05-31 05:05:15,174 - FTMO_RiskManager - INFO - Trade registered: Value 1500.00 | Risk 1.00% | Daily P/L 1500.00
+2025-05-31 05:05:15,174 - FTMO_RiskManager - INFO - Trade registered: Value -2000.00 | Risk -2.00% | Daily P/L -500.00
+2025-05-31 05:05:15,580 - FTMO_RiskManager - INFO - Telegram alert sent: Risk 5.00% exceeds max 2.00%
+2025-05-31 05:05:15,581 - FTMO_RiskManager - WARNING - Trade rejected: Risk 5.00% exceeds max 2.00%
+2025-05-31 05:05:15,582 - FTMO_RiskManager - INFO - Daily stats: {'trades': 2, 'loss': -2000.0, 'profit': 1500.0, 'net': -500.0, 'remaining_trades': 3, 'remaining_daily_loss': 3000.0}

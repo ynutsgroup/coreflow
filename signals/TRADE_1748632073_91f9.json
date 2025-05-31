@@ -1,0 +1,10 @@
+{
+  "id": "TRADE_1748632073_91f9",
+  "type": "sell",
+  "timestamp": 1748632073.110712,
+  "asset": "BTC-USD",
+  "price": 50073.11070108414,
+  "reason": "simulated_signal",
+  "strategy": "sample_data",
+  "redis_used": false
+}
