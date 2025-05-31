@@ -1,0 +1,32 @@
+2025-05-31 16:30:14,305 | WATCHDOG | INFO | CoreFlow Watchdog starting
+2025-05-31 16:30:14,305 | WATCHDOG | INFO | Starting process: /opt/coreflow/.venv/bin/python3 /opt/coreflow/utils/signal_receiver.py
+2025-05-31 16:30:14,310 | WATCHDOG | ERROR | /opt/coreflow/.venv/bin/python3: can't open file '/opt/coreflow/utils/signal_receiver.py': [Errno 2] No such file or directory
+2025-05-31 16:30:24,306 | WATCHDOG | WARNING | Log rate limit reached - suppressing messages
+2025-05-31 17:00:06,486 | WATCHDOG | INFO | CoreFlow Watchdog starting
+2025-05-31 17:00:06,486 | WATCHDOG | INFO | Starting process: /opt/coreflow/.venv/bin/python3 /opt/coreflow/utils/signal_receiver.py
+2025-05-31 17:00:06,491 | WATCHDOG | ERROR | /opt/coreflow/.venv/bin/python3: can't open file '/opt/coreflow/utils/signal_receiver.py': [Errno 2] No such file or directory
+2025-05-31 17:00:15,525 | WATCHDOG | WARNING | Log rate limit reached - suppressing messages
+2025-05-31 17:04:24,283 | WATCHDOG | INFO | CoreFlow Watchdog starting
+2025-05-31 17:04:24,283 | WATCHDOG | INFO | Starting process: /opt/coreflow/.venv/bin/python3 /opt/coreflow/utils/signal_receiver.py
+2025-05-31 17:04:24,297 | WATCHDOG | ERROR | /opt/coreflow/.venv/bin/python3: can't open file '/opt/coreflow/utils/signal_receiver.py': [Errno 2] No such file or directory
+2025-05-31 17:04:34,286 | WATCHDOG | WARNING | Log rate limit reached - suppressing messages
+2025-05-31 17:05:24,298 | WATCHDOG | INFO | Process terminated with status: 2
+2025-05-31 17:05:24,299 | WATCHDOG | WARNING | Process terminated - attempting restart
+2025-05-31 17:05:24,299 | WATCHDOG | WARNING | Log rate limit reached - suppressing messages
+2025-05-31 17:06:24,299 | WATCHDOG | INFO | Starting process: /opt/coreflow/.venv/bin/python3 /opt/coreflow/utils/signal_receiver.py
+2025-05-31 17:06:24,310 | WATCHDOG | ERROR | /opt/coreflow/.venv/bin/python3: can't open file '/opt/coreflow/utils/signal_receiver.py': [Errno 2] No such file or directory
+2025-05-31 17:06:34,302 | WATCHDOG | INFO | Process terminated with status: 2
+2025-05-31 17:06:34,302 | WATCHDOG | WARNING | Log rate limit reached - suppressing messages
+2025-05-31 17:40:37.045 | CF-WATCHDOG | CRITICAL | Fatal error: 'InstitutionalLogger' object has no attribute 'error'
+2025-05-31 17:40:37.046 | CF-WATCHDOG | INFO     | Watchdog service stopped
+2025-05-31 17:44:57.241 | CF-WATCHDOG | INFO     | Process started (PID: 460950)
+2025-05-31 17:45:07.242 | CF-WATCHDOG | WARNING  | Process terminated - Attempting restart
+2025-05-31 17:45:07.244 | CF-WATCHDOG | INFO     | Process started (PID: 460991)
+2025-05-31 17:45:17.244 | CF-WATCHDOG | WARNING  | Process terminated - Attempting restart
+2025-05-31 17:45:17.246 | CF-WATCHDOG | INFO     | Process started (PID: 461011)
+2025-05-31 17:45:23.994 | CF-WATCHDOG | INFO     | Watchdog shutdown requested
+2025-05-31 17:45:23.995 | CF-WATCHDOG | INFO     | Watchdog service stopped
+2025-05-31 17:50:50.906 | CF-WATCHDOG | INFO     | 📡 CoreFlow Watchdog started
+2025-05-31 17:50:50.954 | CF-WATCHDOG | INFO     | Process started (PID: 461501)
+2025-05-31 17:50:57.307 | CF-WATCHDOG | INFO     | Watchdog shutdown requested
+2025-05-31 17:50:57.337 | CF-WATCHDOG | INFO     | Watchdog service stopped

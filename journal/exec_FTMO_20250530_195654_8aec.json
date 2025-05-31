@@ -1,0 +1,10 @@
+{
+  "signal_id": "FTMO_20250530_195654_8aec",
+  "exit_price": 1.09,
+  "exit_time": "2025-05-30T19:56:54.302076+00:00",
+  "pnl_amount": 500.00000000001154,
+  "pnl_percent": 0.010000000000000231,
+  "new_balance": 50500.000000000015,
+  "commission": 0.0,
+  "execution_quality": null
+}

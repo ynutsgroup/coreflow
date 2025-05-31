@@ -1,0 +1,10 @@
+{
+  "id": "TRADE_1748632073_81ae",
+  "type": "sell",
+  "timestamp": 1748632073.1108384,
+  "asset": "XRP-USD",
+  "price": 50073.11083269119,
+  "reason": "simulated_signal",
+  "strategy": "sample_data",
+  "redis_used": false
+}

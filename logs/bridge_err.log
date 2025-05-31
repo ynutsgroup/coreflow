@@ -1,2 +1,16 @@
-/opt/coreflow/bridge/redis_to_zmq_bridge.py:50: DeprecationWarning: Call to '__init__' function with deprecated usage of input argument/s 'retry_on_timeout'. (TimeoutError is included by default.) -- Deprecated since version 6.0.0.
-  r = redis.Redis(
+Traceback (most recent call last):
+  File "/opt/coreflow/bridge/redis_to_zmq_bridge.py", line 7, in <module>
+    from cryptography.fernet import Fernet
+ModuleNotFoundError: No module named 'cryptography'
+Traceback (most recent call last):
+  File "/opt/coreflow/bridge/redis_to_zmq_bridge.py", line 7, in <module>
+    from cryptography.fernet import Fernet
+ModuleNotFoundError: No module named 'cryptography'
+Traceback (most recent call last):
+  File "/opt/coreflow/bridge/redis_to_zmq_bridge.py", line 7, in <module>
+    from cryptography.fernet import Fernet
+ModuleNotFoundError: No module named 'cryptography'
+Traceback (most recent call last):
+  File "/opt/coreflow/bridge/redis_to_zmq_bridge.py", line 7, in <module>
+    from cryptography.fernet import Fernet
+ModuleNotFoundError: No module named 'cryptography'

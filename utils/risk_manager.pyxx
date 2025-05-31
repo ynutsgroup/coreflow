@@ -1,0 +1,225 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+MetaTrader 5 Risk Manager v2.0
+
+Enhanced Features:
+- Robust error handling for MT5 operations
+- Detailed logging with rotation
+- Telegram alerts with retries
+- Configurable risk parameters
+- Position size calculator with validation
+"""
+
+import os
+import logging
+from logging.handlers import RotatingFileHandler
+from dotenv import load_dotenv
+import MetaTrader5 as mt5
+import requests
+from typing import Optional, Tuple
+from datetime import datetime
+
+# Load environment variables
+load_dotenv('/opt/coreflow/.env')
+
+# Configuration
+CONFIG = {
+    'TELEGRAM_TOKEN': os.getenv("TELEGRAM_TOKEN"),
+    'TELEGRAM_CHAT_ID': os.getenv("TELEGRAM_CHAT_ID"),
+    'DEFAULT_RISK_PERCENT': float(os.getenv("DEFAULT_RISK_PERCENT", "1.0")),
+    'MAX_RETRIES': 3,
+    'REQUEST_TIMEOUT': 10,
+    'MAX_LOT_SIZE': 100.0,
+    'MIN_LOT_SIZE': 0.01
+}
+
+class RiskManager:
+    def __init__(self):
+        """Initialize the risk manager with logging and MT5 connection"""
+        self._setup_logging()
+        self._verify_config()
+        self._connect_mt5()
+
+    def _setup_logging(self):
+        """Configure logging with rotation"""
+        log_dir = '/opt/coreflow/logs'
+        os.makedirs(log_dir, exist_ok=True)
+        
+        self.logger = logging.getLogger('MT5RiskManager')
+        self.logger.setLevel(logging.INFO)
+        
+        # Rotating file handler (10MB max, 5 backups)
+        file_handler = RotatingFileHandler(
+            f"{log_dir}/risk_manager.log",
+            maxBytes=10*1024*1024,
+            backupCount=5
+        )
+        file_handler.setFormatter(logging.Formatter(
+            "%(asctime)s - %(levelname)s - %(message)s"
+        ))
+        self.logger.addHandler(file_handler)
+
+        # Console handler
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(logging.Formatter(
+            "%(asctime)s - %(levelname)s - %(message)s"
+        ))
+        self.logger.addHandler(console_handler)
+
+    def _verify_config(self):
+        """Validate configuration parameters"""
+        if not CONFIG['TELEGRAM_TOKEN'] or not CONFIG['TELEGRAM_CHAT_ID']:
+            raise ValueError("Telegram credentials not configured")
+        if not 0 < CONFIG['DEFAULT_RISK_PERCENT'] <= 100:
+            raise ValueError("Risk percentage must be between 0 and 100")
+
+    def _connect_mt5(self):
+        """Initialize MT5 connection with retries"""
+        for attempt in range(3):
+            try:
+                if not mt5.initialize():
+                    raise ConnectionError("MT5 initialization failed")
+                self.logger.info("Successfully connected to MT5")
+                return
+            except Exception as e:
+                self.logger.warning(f"MT5 connection attempt {attempt + 1} failed: {str(e)}")
+                if attempt == 2:
+                    self.logger.error("Failed to connect to MT5 after 3 attempts")
+                    raise
+
+    def send_telegram_alert(self, message: str) -> bool:
+        """
+        Send Telegram alert with retry logic
+        
+        Args:
+            message: The message to send (HTML formatted)
+            
+        Returns:
+            bool: True if message was sent successfully
+        """
+        url = f"https://api.telegram.org/bot{CONFIG['TELEGRAM_TOKEN']}/sendMessage"
+        payload = {
+            "chat_id": CONFIG['TELEGRAM_CHAT_ID'],
+            "text": message,
+            "parse_mode": "HTML"
+        }
+
+        for attempt in range(CONFIG['MAX_RETRIES']):
+            try:
+                response = requests.post(
+                    url,
+                    json=payload,
+                    timeout=CONFIG['REQUEST_TIMEOUT']
+                )
+                response.raise_for_status()
+                self.logger.info("Telegram alert sent successfully")
+                return True
+            except Exception as e:
+                self.logger.warning(f"Telegram send attempt {attempt + 1} failed: {str(e)}")
+                if attempt == CONFIG['MAX_RETRIES'] - 1:
+                    self.logger.error("Failed to send Telegram alert after retries")
+                    return False
+
+    def calculate_position_size(
+        self,
+        balance: float,
+        stop_loss_pips: float,
+        symbol: str,
+        risk_percent: Optional[float] = None
+    ) -> Tuple[float, Optional[str]]:
+        """
+        Calculate optimal position size with validation
+        
+        Args:
+            balance: Account balance
+            stop_loss_pips: Stop loss in pips
+            symbol: Trading symbol
+            risk_percent: Optional risk percentage (uses default if None)
+            
+        Returns:
+            Tuple: (lot_size, error_message)
+        """
+        if risk_percent is None:
+            risk_percent = CONFIG['DEFAULT_RISK_PERCENT']
+
+        try:
+            # Validate inputs
+            if balance <= 0:
+                return 0.0, "Account balance must be positive"
+            if stop_loss_pips <= 0:
+                return 0.0, "Stop loss must be positive"
+            if not 0 < risk_percent <= 100:
+                return 0.0, "Risk percentage must be between 0 and 100"
+
+            # Get symbol info
+            symbol_info = mt5.symbol_info(symbol)
+            if symbol_info is None:
+                return 0.0, f"Symbol {symbol} not found"
+
+            # Calculate pip value
+            tick_value = symbol_info.trade_tick_value
+            tick_size = symbol_info.trade_tick_size
+            lot_step = symbol_info.volume_step
+
+            if tick_value <= 0 or tick_size <= 0:
+                return 0.0, "Invalid tick value or size"
+
+            pip_value = (tick_value / tick_size) if tick_size != 0 else 0
+            if pip_value == 0:
+                return 0.0, "Pip value calculation failed"
+
+            # Calculate lot size
+            risk_amount = balance * (risk_percent / 100)
+            lot_size = risk_amount / (stop_loss_pips * pip_value)
+
+            # Apply lot step rounding
+            lot_size = max(round(lot_size / lot_step) * lot_step, lot_step)
+            lot_size = round(lot_size, 2)
+
+            # Validate against min/max
+            if lot_size < CONFIG['MIN_LOT_SIZE']:
+                return 0.0, f"Lot size too small (min {CONFIG['MIN_LOT_SIZE']})"
+            if lot_size > CONFIG['MAX_LOT_SIZE']:
+                return 0.0, f"Lot size too large (max {CONFIG['MAX_LOT_SIZE']})"
+
+            self.logger.info(
+                f"Calculated lot size: {lot_size} for {symbol} "
+                f"(Balance: {balance}, Risk: {risk_percent}%, SL: {stop_loss_pips}pips)"
+            )
+            return lot_size, None
+
+        except Exception as e:
+            error_msg = f"Position size calculation error: {str(e)}"
+            self.logger.error(error_msg)
+            self.send_telegram_alert(f"❌ <b>Risk Manager Error:</b>\n{error_msg}")
+            return 0.0, error_msg
+
+    def shutdown(self):
+        """Clean up resources"""
+        mt5.shutdown()
+        self.logger.info("MT5 connection closed")
+
+if __name__ == "__main__":
+    try:
+        risk_manager = RiskManager()
+        
+        # Example usage
+        lot_size, error = risk_manager.calculate_position_size(
+            balance=10000,
+            stop_loss_pips=50,
+            symbol="EURUSD"
+        )
+        
+        if error:
+            print(f"Error: {error}")
+        else:
+            print(f"Recommended lot size: {lot_size}")
+            
+    except Exception as e:
+        logging.critical(f"Application error: {str(e)}")
+        raise
+    finally:
+        risk_manager.shutdown()	
+

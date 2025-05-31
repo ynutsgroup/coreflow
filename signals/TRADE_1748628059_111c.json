@@ -1,0 +1,10 @@
+{
+  "id": "TRADE_1748628059_111c",
+  "type": "sell",
+  "timestamp": 1748628059.157024,
+  "asset": "ETH-USD",
+  "price": 50059.156977176666,
+  "reason": "simulated_signal",
+  "strategy": "sample_data",
+  "redis_used": false
+}

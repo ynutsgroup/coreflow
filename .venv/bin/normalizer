@@ -1,4 +1,4 @@
-#!/opt/coreflow/.venv/bin/python3.12
+#!/opt/coreflow/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

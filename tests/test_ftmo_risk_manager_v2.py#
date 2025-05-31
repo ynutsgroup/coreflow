@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+"""
+Enhanced FTMO Risk Manager Module
+
+Key Improvements:
+1. Thread-safe implementation
+2. Detailed logging configuration
+3. Strict input validation
+4. Automatic daily reset
+5. Extended statistics tracking
+"""
+
+import os
+import time
+import logging
+import threading
+from datetime import datetime, timezone, timedelta
+from typing import Tuple, Dict, Any
+
+class FTMORiskManager:
+    """Enhanced FTMO Risk Manager with thread safety and detailed tracking."""
+    
+    _instance = None
+    _lock = threading.Lock()
+    
+    def __new__(cls, *args, **kwargs):
+        """Thread-safe singleton pattern implementation."""
+        with cls._lock:
+            if cls._instance is None:
+                cls._instance = super().__new__(cls)
+                cls._instance._initialized = False
+        return cls._instance
+    
+    def __init__(
+        self,
+        max_daily_trades: int = 5,
+        max_risk_per_trade: float = 0.02,
+        max_daily_loss: float = 0.05,
+        starting_balance: float = 100000.0
+    ):
+        """Initialize the risk manager (only once)."""
+        with self._lock:
+            if self._initialized:
+                return
+                
+            # Parameter validation
+            if not all(isinstance(x, (int, float)) and x > 0 
+                      for x in [max_daily_trades, max_risk_per_trade, max_daily_loss, starting_balance]):
+                raise ValueError("All parameters must be positive numbers")
+                
+            self.max_daily_trades = int(max_daily_trades)
+            self.max_risk_per_trade = float(max_risk_per_trade)
+            self.max_daily_loss = float(max_daily_loss)
+            self.starting_balance = float(starting_balance)
+            
+            # State variables
+            self.daily_trade_count = 0
+            self.daily_loss = 0.0
+            self.daily_profit = 0.0
+            self.last_reset_date = datetime.now(timezone.utc).date()
+            self._initialized = True
+            
+            # Configure logging
+            self.logger = logging.getLogger('FTMORiskManager')
+            self._setup_logging()
+            
+            self.logger.info("FTMO Risk Manager initialized successfully")
+            self.logger.info(f"Configuration: Max Trades/Day={self.max_daily_trades}, "
+                           f"Max Risk/Trade={self.max_risk_per_trade*100}%, "
+                           f"Max Daily Loss={self.max_daily_loss*100}%, "
+                           f"Starting Balance={self.starting_balance:.2f}")
+
+    def _setup_logging(self):
+        """Configure advanced logging setup."""
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        )
+        
+        # Console handler
+        ch = logging.StreamHandler()
+        ch.setFormatter(formatter)
+        
+        # File handler (system log directory)
+        log_dir = "/var/log/coreflow"
+        os.makedirs(log_dir, exist_ok=True)
+        fh = logging.FileHandler(f"{log_dir}/ftmo_risk.log")
+        fh.setFormatter(formatter)
+        
+        self.logger.setLevel(logging.INFO)
+        self.logger.addHandler(ch)
+        self.logger.addHandler(fh)
+
+    def _auto_reset(self):
+        """Perform daily reset if needed."""
+        today = datetime.now(timezone.utc).date()
+        if self.last_reset_date != today:
+            with self._lock:
+                if self.last_reset_date != today:  # Double-check locking
+                    self.daily_trade_count = 0
+                    self.daily_loss = 0.0
+                    self.daily_profit = 0.0
+                    self.last_reset_date = today
+                    self.logger.info("Daily statistics reset")
+
+    def validate_trade(self, trade_value: float, risk_percentage: float) -> Tuple[bool, str]:
+        """
+        Validate a trade against all FTMO rules.
+        
+        Args:
+            trade_value: Trade value (positive = profit, negative = loss)
+            risk_percentage: Risk in decimal (0.02 = 2%)
+            
+        Returns:
+            Tuple: (is_valid, reason)
+        """
+        # Input validation
+        if not isinstance(trade_value, (int, float)):
+            raise TypeError("trade_value must be numeric")
+        if not isinstance(risk_percentage, (int, float)) or not 0 <= risk_percentage <= 1:
+            raise ValueError("risk_percentage must be between 0 and 1")
+            
+        self._auto_reset()
+        
+        with self._lock:
+            # 1. Check daily trade limit
+            if self.daily_trade_count >= self.max_daily_trades:
+                msg = f"Max {self.max_daily_trades} trades/day reached"
+                self.logger.warning(msg)
+                return False, msg
+                
+            # 2. Check risk per trade
+            if abs(risk_percentage) > self.max_risk_per_trade:
+                msg = (f"Risk {risk_percentage * 100:.2f}% > " 
+                      f"Max {self.max_risk_per_trade * 100:.2f}%")
+                self.logger.warning(msg)
+                return False, msg
+                
+            # 3. Check daily loss limit (only for loss trades)
+            if trade_value < 0:
+                potential_loss = self.daily_loss + trade_value
+                max_allowed_loss = self.max_daily_loss * self.starting_balance
+                
+                if -potential_loss > max_allowed_loss:
+                    msg = (f"Potential daily loss {-potential_loss:.2f} > "
+                          f"Max allowed {max_allowed_loss:.2f}")
+                    self.logger.warning(msg)
+                    return False, msg
+                
+            return True, "Trade validated"
+
+    def register_trade(self, trade_value: float, risk_percentage: float) -> None:
+        """
+        Register a completed trade.
+        
+        Args:
+            trade_value: Trade value
+            risk_percentage: Risk taken
+        """
+        # Input validation
+        if not isinstance(trade_value, (int, float)):
+            raise TypeError("trade_value must be numeric")
+        if not isinstance(risk_percentage, (int, float)) or not 0 <= risk_percentage <= 1:
+            raise ValueError("risk_percentage must be between 0 and 1")
+            
+        self._auto_reset()
+        
+        with self._lock:
+            self.daily_trade_count += 1
+            if trade_value < 0:  # Only count losses
+                self.daily_loss += trade_value
+            else:
+                self.daily_profit += trade_value
+                
+            self.logger.info(
+                f"Trade registered: #{self.daily_trade_count}/{self.max_daily_trades} | "
+                f"Value: {trade_value:.2f} | "
+                f"Risk: {risk_percentage * 100:.2f}% | "
+                f"Daily P/L: {self.daily_profit - self.daily_loss:.2f} "
+                f"(Max loss: {self.max_daily_loss * self.starting_balance:.2f})"
+            )
+
+    def get_daily_stats(self) -> Dict[str, Any]:
+        """Return current daily statistics."""
+        self._auto_reset()
+        
+        with self._lock:
+            return {
+                "trade_count": self.daily_trade_count,
+                "max_trades": self.max_daily_trades,
+                "daily_loss": self.daily_loss,
+                "daily_profit": self.daily_profit,
+                "net_pnl": self.daily_profit - self.daily_loss,
+                "max_daily_loss": self.max_daily_loss * self.starting_balance,
+                "remaining_daily_loss": self.max_daily_loss * self.starting_balance + self.daily_loss,
+                "last_reset": self.last_reset_date.isoformat(),
+                "current_time": datetime.now(timezone.utc).isoformat()
+            }
+
+    def force_reset(self) -> None:
+        """Force reset daily statistics (for testing/emergencies)."""
+        with self._lock:
+            self.daily_trade_count = 0
+            self.daily_loss = 0.0
+            self.daily_profit = 0.0
+            self.last_reset_date = datetime.now(timezone.utc).date()
+            self.logger.warning("Manual reset of daily statistics performed")
+
+def get_ftmo_risk_manager() -> FTMORiskManager:
+    """Get the singleton instance of the Risk Manager."""
+    return FTMORiskManager()
+
+
+
+

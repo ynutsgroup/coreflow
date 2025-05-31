@@ -1,0 +1,25 @@
+{
+  "id": "FTMO_20250530_195654_8aec",
+  "type": "long",
+  "timestamp": "2025-05-30T19:56:54.301952+00:00",
+  "instrument": "EURUSD",
+  "entry": 1.085,
+  "stop_loss": 1.082,
+  "take_profit": 1.092,
+  "size": 100000,
+  "risk_amount": 299.99999999998914,
+  "risk_percent": 0.005999999999999783,
+  "reward_ratio": 2.3333333333334565,
+  "strategy": "FTMO_Pro",
+  "balance": 50000.0,
+  "validation": {
+    "is_valid": true,
+    "reason": "Trade validiert",
+    "daily_stats": {
+      "trades": 1,
+      "max_trades": 10,
+      "daily_loss": 0.0,
+      "max_daily_loss": 2500.0
+    }
+  }
+}
