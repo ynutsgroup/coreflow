@@ -1,16 +1,8 @@
-Traceback (most recent call last):
-  File "/opt/coreflow/bridge/redis_to_zmq_bridge.py", line 7, in <module>
-    from cryptography.fernet import Fernet
-ModuleNotFoundError: No module named 'cryptography'
-Traceback (most recent call last):
-  File "/opt/coreflow/bridge/redis_to_zmq_bridge.py", line 7, in <module>
-    from cryptography.fernet import Fernet
-ModuleNotFoundError: No module named 'cryptography'
-Traceback (most recent call last):
-  File "/opt/coreflow/bridge/redis_to_zmq_bridge.py", line 7, in <module>
-    from cryptography.fernet import Fernet
-ModuleNotFoundError: No module named 'cryptography'
-Traceback (most recent call last):
-  File "/opt/coreflow/bridge/redis_to_zmq_bridge.py", line 7, in <module>
-    from cryptography.fernet import Fernet
-ModuleNotFoundError: No module named 'cryptography'
+supervisor: couldn't chdir to /opt/coreflow: EACCES
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /opt/coreflow: EACCES
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /opt/coreflow: EACCES
+supervisor: child process was not spawned
+supervisor: couldn't chdir to /opt/coreflow: EACCES
+supervisor: child process was not spawned

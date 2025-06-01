@@ -1,0 +1,29 @@
+nohup: ignoring input
+2025-06-01 10:51:16,052 [INFO] 📡 Watchdog Async-Modus gestartet.
+2025-06-01 11:49:03,385 [ERROR] Fehler im Watchdog: can only join an iterable
+Traceback (most recent call last):
+  File "/opt/coreflow/watchdogs/watchdog_async_nohup.py", line 88, in main
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/coreflow/watchdogs/watchdog_async_nohup.py", line 59, in monitor_loop
+    logger.error(f"❌ Telegram error {resp.status}: {error_text}")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: can only join an iterable
+2025-06-01 16:46:54,957 | INFO | 🎯 Watchdog gestartet
+2025-06-01 16:46:55,149 | INFO | 🔁 Starte coreflow_main.py ...
+2025-06-01 16:46:55,406 | INFO | 🧠 Starting CoreFlow Institutional Trading System
+2025-06-01 16:46:55,438 | INFO | 🚀 Starting Institutional Health Monitor
+2025-06-01 16:46:55,438 | INFO | 🚀 Starting Institutional Health Monitor
+2025-06-01 16:47:31,075 | INFO | 🎯 Watchdog gestartet
+2025-06-01 16:47:31,202 | INFO | 🔁 Starte coreflow_main.py ...
+2025-06-01 16:47:31,459 | INFO | 🧠 Starting CoreFlow Institutional Trading System
+2025-06-01 16:47:31,491 | INFO | 🚀 Starting Institutional Health Monitor
+2025-06-01 16:47:31,491 | INFO | 🚀 Starting Institutional Health Monitor
+2025-06-01 17:12:26,554 | WARNING | 🚫 Max. Neustartanzahl erreicht. Cooldown aktiv.
+2025-06-01 17:12:54,650 | WARNING | 🚫 Max. Neustartanzahl erreicht. Cooldown aktiv.
+2025-06-01 17:13:50,700 | WARNING | 🚫 Max. Neustartanzahl erreicht. Cooldown aktiv.
+2025-06-01 17:39:01,179 | INFO | 📴 Shutdown signal received (15)
+2025-06-01 17:39:01,180 | INFO | 📴 Shutdown signal received (15)
+2025-06-01 17:39:17,366 | INFO | 📴 Shutdown signal received (15)
+2025-06-01 17:39:17,366 | INFO | 📴 Shutdown signal received (15)

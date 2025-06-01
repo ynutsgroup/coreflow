@@ -1,89 +1,34 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-FTMO-Compliant Telegram Notification Module for CoreFlow
-Enhanced with trading rule alerts and message formatting
-"""
+# Async Telegram Notifier for aiogram/async apps
 
 import os
-import requests
-import logging
-from datetime import datetime
 from dotenv import load_dotenv
-from typing import Optional
-
-# Initialize logging
-logger = logging.getLogger("CF.Telegram")
+import aiohttp
 
 load_dotenv("/opt/coreflow/.env")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-class TelegramNotifier:
-    def __init__(self):
-        self.token = os.getenv("TELEGRAM_TOKEN")
-        self.chat_id = os.getenv("TELEGRAM_CHAT_ID")
-        self.timeout = 10
-        self.last_alert = None
-        self.alert_cooldown = 60  # seconds
-        
-        if not self.token or not self.chat_id:
-            logger.error("Telegram credentials missing in .env")
+async def send_telegram_alert(message: str, alert_type: str = "INFO") -> bool:
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        return False
 
-    def send_alert(self, message: str, alert_type: Optional[str] = "INFO") -> bool:
-        """
-        FTMO-compliant alerting with message formatting and rate limiting
-        Types: INFO, WARNING, ERROR, TRADE, RISK
-        """
-        if not self.token or not self.chat_id:
-            return False
+    icon_map = {
+        "INFO": "ℹ️",
+        "WARNING": "⚠️",
+        "ERROR": "❌",
+        "TRADE": "💱",
+        "RISK": "🚨"
+    }
+    icon = icon_map.get(alert_type.upper(), "🔔")
+    text = f"<b>{icon} {alert_type.upper()}</b>\n\n{message}"
 
-        # Rate limiting check
-        if self.last_alert and (datetime.now() - self.last_alert).seconds < self.alert_cooldown:
-            logger.debug("Alert cooldown active")
-            return False
-
-        # FTMO message formatting
-        formatted_msg = self._format_message(message, alert_type)
-        url = f"https://api.telegram.org/bot{self.token}/sendMessage"
-        
-        payload = {
-            "chat_id": self.chat_id,
-            "text": formatted_msg,
-            "parse_mode": "HTML"
-        }
-
-        try:
-            response = requests.post(url, json=payload, timeout=self.timeout)
-            if response.status_code == 200:
-                self.last_alert = datetime.now()
-                return True
-                
-            logger.error(f"Telegram API error: {response.status_code} - {response.text}")
-            return False
-            
-        except Exception as e:
-            logger.error(f"Telegram send failed: {str(e)}")
-            return False
-
-    def _format_message(self, message: str, alert_type: str) -> str:
-        """Formats messages according to FTMO notification standards"""
-        icons = {
-            "INFO": "ℹ️",
-            "WARNING": "⚠️",
-            "ERROR": "❌",
-            "TRADE": "💱", 
-            "RISK": "🚨"
-        }
-        
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        icon = icons.get(alert_type, "🔔")
-        
-        return f"<b>{icon} {alert_type}</b>\n{timestamp}\n\n{message}"
-
-# Global instance for easy access
-notifier = TelegramNotifier()
-
-def send_telegram_alert(message: str, alert_type: Optional[str] = "INFO") -> bool:
-    """Legacy function wrapper for backward compatibility"""
-    return notifier.send_alert(message, alert_type)
-if __name__ == "__main__":
-    send_telegram_alert("✅ Telegram Modul erfolgreich getestet!", "INFO")
+    try:
+        async with aiohttp.ClientSession() as session:
+            url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+            params = {"chat_id": TELEGRAM_CHAT_ID, "text": text, "parse_mode": "HTML"}
+            async with session.get(url, params=params) as response:
+                return response.status == 200
+    except Exception as e:
+        print(f"Async Telegram Error: {str(e)}")
+        return False

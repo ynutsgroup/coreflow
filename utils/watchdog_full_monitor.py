@@ -53,10 +53,13 @@ def setup_logging():
     console.setFormatter(formatter)
     logging.getLogger().addHandler(console)
 
+
 def count_recent_restarts():
-    """Count restarts within the time window"""
+    """Count and purge old restart timestamps"""
     cutoff = datetime.now() - timedelta(seconds=RESTART_WINDOW)
-    return len([t for t in restart_times if t > cutoff])
+    # 🧹 Entferne veraltete Neustart-Zeitpunkte
+    restart_times[:] = [t for t in restart_times if t > cutoff]
+    return len(restart_times)
 
 def should_throttle(error_key):
     """Check if we should throttle messages for this error type"""
