@@ -1,0 +1,12 @@
+{
+  "risk": {
+    "daily_pnl": 0.0,
+    "total_pnl": 0.0,
+    "today_trades": 0,
+    "trading_days": 0,
+    "win_count": 0,
+    "total_trades": 0,
+    "last_trade_day": "2025-06-01"
+  },
+  "last_signal_time": "0001-01-01T00:00:00"
+}
