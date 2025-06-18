@@ -1,0 +1,58 @@
+# ===== SYSTEMKONFIGURATION =====
+INSTITUTION_ID=FTMO_CPU_OPTIMIZED
+TRADE_MODE=LIVE
+LOG_DIR=/opt/coreflow/logs  # Linux | C:\CoreFlow\logs (Windows)
+OPERATION_MODE=CPU_ONLY
+
+# ===== KI-CPU-OPTIMIERUNG =====
+GPU_ENABLED=False
+AI_DEVICE=cpu
+AI_MODEL_PATH=/opt/coreflow/models/your_actual_model.pt  # Korrekter Dateiname
+AI_BATCH_SIZE=8               # Kleinere Batches für CPU
+AI_MAX_LATENCY=200            # Höhere Latenztoleranz (ms)
+AI_THREADS=6                  # CPU-Threads für Parallelverarbeitung
+AI_PRECISION=FLOAT32          # CPU-optimierte Präzision
+
+# ===== KERNASSETS =====
+TRADE_SYMBOLS=EURUSD,GBPUSD,BTCUSD,XAUUSD
+ASSET_CLASSES=forex,crypto,metal
+
+# ===== RISIKOMANAGEMENT =====
+MAX_DAILY_LOSS_PERCENT=5.0
+MAX_DAILY_TRADES=50           # Reduziert für CPU
+MIN_CONFIDENCE=0.85           # Höhere Schwelle
+SYMBOL_LEVERAGE=EURUSD:30,GBPUSD:20,BTCUSD:5,XAUUSD:10
+VOLUME_LIMITS_EURUSD=0.1-10.0 # Konservative Limits
+VOLUME_LIMITS_BTCUSD=0.01-0.3
+VOLUME_LIMITS_XAUUSD=0.1-3.0
+
+# ===== TRADING ENGINE =====
+ORDER_EXECUTION_TIMEOUT=3.0   # Sekunden
+MAX_SLIPPAGE_PIPS=5           # Max akzeptierter Slippage
+SPREAD_LIMIT_EURUSD=2.5       # Pips
+SPREAD_LIMIT_BTCUSD=15.0
+
+# ===== REDIS (UNVERÄNDERT) =====
+REDIS_HOST=192.168.178.19
+REDIS_PORT=6379
+REDIS_PASSWORD=IhrSicheresPasswort123!
+REDIS_CHANNELS=forex_signals,crypto_signals,metal_signals
+
+# ===== PERFORMANCE TUNING =====
+EMIT_INTERVAL=0.75            # Langsamere Zykluszeit
+SIGNAL_TTL=45                 # Sekunden
+ORDER_CACHE_SIZE=500          # Weniger Cache für CPU
+DEDUPLICATION_WINDOW=600      # Sekunden
+
+# ===== TELEGRAM ALARME =====
+TELEGRAM_ENABLED=True
+TELEGRAM_TOKEN=7868571235:AAEQS3iVrWMNzfyKytdlrd74GhlSyj1mpVU
+TELEGRAM_CHAT_ID=1820797607
+ALERT_LEVELS=ERROR,LIMIT_REACHED
+
+# ===== TESTMODUS =====
+TEST_MODE_ENABLED=False
+TEST_SYMBOL=EURUSD
+TEST_VOLUME=0.1
+TEST_DURATION=300              # Sekunden
+AI_MODEL_PATH=/opt/coreflow/models/dummy_model.pt

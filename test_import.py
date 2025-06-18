@@ -1,6 +1,6 @@
-import importlib
 
-ftmo_risk_manager = importlib.import_module('core.risk_management.ftmo_risk_manager')
-FTMORiskManager = ftmo_risk_manager.FTMORiskManager
+import sys
+print("Python paths:", sys.path)
+from core.ki.lstm_predictor import LSTMTrader
+print("Successfully imported LSTMTrader!")
 
-print("FTMORiskManager imported successfully!")

@@ -10,12 +10,6 @@ class FTMO_VALGEngine:
                  min_volume_spike: float = 2.0):    # 2x durchschn. Volumen
         """
         FTMO-konformer VALG Engine mit striktem Risikomanagement
-        
-        Args:
-            account_size: Kontogröße in USD
-            max_risk_per_trade: Maximales Risiko pro Trade (0.01 = 1%)
-            volatility_window: Fenster für Volatilitätsberechnung
-            min_volume_spike: Mindestvolumen-Spike
         """
         self.max_risk = min(max_risk_per_trade, 0.02)  # Hardcap bei 2%
         self.min_stop_loss_pips = 10  # Mindest-Stop-Loss (FTMO Regel)
@@ -101,7 +95,10 @@ class FTMO_VALGEngine:
                 'direction': df.at[last_idx, 'signal'],
                 'size': df.at[last_idx, 'size'],
                 'stop_loss': df.at[last_idx, 'stop_loss'],
-                'take_profit': df.at[last_idx, 'take_profit']
+                'take_profit': df.at[last_idx, 'take_profit'],
+                'timestamp': df.index[-1],
+                'symbol': df.columns.name if df.columns.name else "UNKNOWN",
+                'entry': df['close'].iloc[-1]
             }
 
         return df
@@ -122,3 +119,31 @@ class FTMO_VALGEngine:
             'allowed_strategies': ['VALG_Liquidity'],
             'prohibited': ['Martingale', 'Grid', 'Hedging']
         }
+
+    async def execute_trade(self, signal: dict, risk_percent: float, account_size: float) -> dict:
+        """
+        Dummy Trade-Ausführung – simuliert PnL und gibt Resultat zurück.
+        """
+        direction = "BUY" if signal['direction'] == 1 else "SELL"
+        volume = signal['size']
+        price = signal.get("entry", 1.0)
+        sl = signal.get("stop_loss", 0)
+        tp = signal.get("take_profit", 0)
+
+        simulated_pnl = round(np.random.uniform(-1, 3), 2) * risk_percent * account_size
+
+        result = {
+            "symbol": signal.get("symbol", "UNKNOWN"),
+            "direction": direction,
+            "volume": volume,
+            "entry": price,
+            "stop_loss": sl,
+            "take_profit": tp,
+            "pnl": simulated_pnl,
+            "risk": risk_percent,
+            "account_size": account_size,
+            "timestamp": signal.get("timestamp")
+        }
+
+        print(f"✅ Simulierter Trade ausgeführt: {result}")
+        return result

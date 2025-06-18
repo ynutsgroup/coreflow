@@ -1,0 +1,7 @@
+# /opt/coreflow/config/routing.yaml
+
+channels:
+  EURUSD: eurusd_signals
+  BTCUSD: btcusd_signals
+  XAUUSD: gold_signals
+  DEFAULT: trading_signals

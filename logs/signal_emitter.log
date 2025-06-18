@@ -1,0 +1,77 @@
+2025-06-18 00:00:21,680 | INFO | 📤 Signal veröffentlicht: EURUSD BUY 0.2 → Kanal: 'eurusd_signals'
+2025-06-18 00:01:08,117 | INFO | 📤 Signal veröffentlicht: EURUSD BUY 0.2 → Kanal: 'eurusd_signals'
+2025-06-18 00:03:34,675 | INFO | 📤 Signal veröffentlicht: EURUSD BUY 0.2 → Kanal: 'eurusd_signals'
+2025-06-18 00:07:43,631 | INFO | 🔑 Fernet-Verschlüsselung aktiviert
+2025-06-18 00:07:43,633 | INFO | ✅ Redis verbunden
+2025-06-18 00:07:43,656 | INFO | 📤 Signal an eurusd_signals gesendet: EURUSD BUY 0.2
+2025-06-18 00:08:24,031 | INFO | 🔑 Fernet-Verschlüsselung aktiviert
+2025-06-18 00:08:24,033 | INFO | ✅ Redis verbunden
+2025-06-18 00:08:24,057 | INFO | 📤 Signal an eurusd_signals gesendet: EURUSD BUY 0.2
+2025-06-18 00:10:50,107 | INFO | 🔑 Fernet-Verschlüsselung aktiviert
+2025-06-18 00:10:50,109 | INFO | ✅ Redis verbunden
+2025-06-18 00:10:50,133 | INFO | 📤 Signal an eurusd_signals gesendet: EURUSD BUY 0.2
+2025-06-18 00:11:16,220 | INFO | 🔑 Fernet-Verschlüsselung aktiviert
+2025-06-18 00:11:16,222 | INFO | ✅ Redis verbunden
+2025-06-18 00:11:16,246 | INFO | 📤 Signal an eurusd_signals gesendet: EURUSD BUY 0.2
+2025-06-18 00:11:47,423 | CRITICAL | SignalEmitter | Modul decrypt_env.py fehlt unter /opt/coreflow/utils/
+2025-06-18 00:12:27,859 | INFO | 🔑 Fernet-Verschlüsselung aktiviert
+2025-06-18 00:12:27,861 | INFO | ✅ Redis verbunden
+2025-06-18 00:12:27,884 | INFO | 📤 Signal an eurusd_signals gesendet: EURUSD BUY 0.1
+2025-06-18 00:12:33,115 | INFO | 🔑 Fernet-Verschlüsselung aktiviert
+2025-06-18 00:12:33,117 | INFO | ✅ Redis verbunden
+2025-06-18 00:12:33,141 | INFO | 📤 Signal an eurusd_signals gesendet: EURUSD BUY 0.1
+2025-06-18 00:14:30,003 | CRITICAL | SignalEmitter | Modul decrypt_env.py fehlt unter /opt/coreflow/utils/
+2025-06-18 00:14:48,855 | CRITICAL | SignalEmitter | Modul decrypt_env.py fehlt unter /opt/coreflow/utils/
+2025-06-18 01:05:09,728 | CRITICAL | SignalEmitter | Modul decrypt_env.py fehlt unter /opt/coreflow/utils/
+2025-06-18 01:07:14,607 | CRITICAL | SignalEmitter | Modul decrypt_env.py fehlt unter /opt/coreflow/utils/
+2025-06-18 01:07:34,294 | CRITICAL | SignalEmitter | Modul decrypt_env.py fehlt unter /opt/coreflow/utils/
+2025-06-18 01:07:41,910 | CRITICAL | SignalEmitter | Modul decrypt_env.py fehlt unter /opt/coreflow/utils/
+2025-06-18 01:08:04,511 | CRITICAL | SignalEmitter | Modul decrypt_env.py fehlt unter /opt/coreflow/utils/
+2025-06-18 01:14:39,320 | INFO | 📤 Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:15:16,341 | INFO | 📤 Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:17:31,526 | INFO | 📤 Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:19:28,038 | INFO | 📤 Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:21:46,750 | INFO | 📤 Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:26:32,023 | INFO | 📤 Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:28:42,013 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:28:51,573 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:29:08,670 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:29:13,276 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:30:34,925 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:37:25,360 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:37:39,715 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:39:48,506 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:40:26,379 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:40:44,371 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:40:47,044 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:41:16,604 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:41:20,172 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:41:26,556 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:41:32,227 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:41:56,267 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:42:40,190 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:42:42,628 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:44:13,366 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:44:25,036 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 01:52:22,687 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 02:00:07,005 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 02:03:09,510 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 02:03:47,423 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 15:26:58,662 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 15:38:20,834 | INFO | 📤 Klartext-Signal veröffentlicht: EURUSD BUY 0.2 auf Kanal 'trading_signals'
+2025-06-18 17:15:59,739 | CRITICAL | SignalEmitter  | ❌ Modul 'decrypt_env.py' fehlt unter /opt/coreflow/utils/
+2025-06-18 17:19:03,517 | CRITICAL | SignalEmitter  | ❌ Modul 'decrypt_env.py' fehlt unter /opt/coreflow/utils/
+2025-06-18 17:20:48,419 | CRITICAL | SignalEmitter  | ❌ Modul 'decrypt_env.py' fehlt unter /opt/coreflow/utils/
+2025-06-18 17:21:30,607 | CRITICAL | SignalEmitter  | ❌ Modul 'decrypt_env.py' fehlt unter /opt/coreflow/utils/
+2025-06-18 17:25:00,183 | INFO     | EnvDecryptor   | 🔓 .env.enc erfolgreich entschlüsselt und geladen
+2025-06-18 17:25:00,185 | INFO     | SignalEmitter  | ✅ Redis-Verbindung erfolgreich
+2025-06-18 17:25:00,186 | INFO     | SignalEmitter  | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'BUY', 'lot': 0.2, 'confidence': 0.87, 'timestamp': '2025-06-18T17:25:00.185761+00:00'}
+2025-06-18 17:25:58,217 | INFO     | EnvDecryptor   | 🔓 .env.enc erfolgreich entschlüsselt und geladen
+2025-06-18 17:25:58,219 | INFO     | SignalEmitter  | ✅ Redis-Verbindung erfolgreich
+2025-06-18 17:25:58,220 | INFO     | SignalEmitter  | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'BUY', 'lot': 0.2, 'confidence': 0.87, 'timestamp': '2025-06-18T17:25:58.219899+00:00'}
+2025-06-18 17:29:39,403 | INFO     | EnvDecryptor   | 🔓 .env.enc erfolgreich entschlüsselt und geladen
+2025-06-18 17:29:39,405 | INFO     | SignalEmitter  | ✅ Redis-Verbindung erfolgreich
+2025-06-18 17:29:39,406 | INFO     | SignalEmitter  | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'BUY', 'lot': 0.2, 'confidence': 0.87, 'timestamp': '2025-06-18T17:29:39.406070+00:00'}
+2025-06-18 17:38:23,260 | INFO     | EnvDecryptor   | 🔓 .env.enc erfolgreich entschlüsselt und geladen
+2025-06-18 17:38:23,262 | INFO     | SignalEmitter  | ✅ Redis-Verbindung erfolgreich
+2025-06-18 17:38:23,262 | INFO     | SignalEmitter  | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'BUY', 'lot': 0.2, 'confidence': 0.87, 'timestamp': '2025-06-18T17:38:23.262398+00:00'}

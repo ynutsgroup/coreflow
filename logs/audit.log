@@ -1,6 +1,0 @@
-2025-05-31 05:42:51,665 | INFO | Trade registered: PnL 1500.00 | Risk 1.00% | Daily P/L: 1500.00
-2025-05-31 05:42:51,665 | WARNING | Trade rejected: Risk 1.50% outside allowed range (0.50%-1.00%)
-2025-05-31 05:42:51,665 | WARNING | Trade rejected: Risk 2.00% outside allowed range (0.50%-1.00%)
-2025-05-31 05:42:51,665 | INFO | Trade registered: PnL -4000.00 | Risk 1.00% | Daily P/L: -2500.00
-2025-05-31 05:42:51,666 | INFO | Trade registered: PnL 1000.00 | Risk 0.50% | Daily P/L: -1500.00
-2025-05-31 05:42:51,666 | INFO | Trade registered: PnL 500.00 | Risk 1.00% | Daily P/L: -1000.00

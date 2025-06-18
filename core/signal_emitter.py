@@ -1,65 +1,96 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+CoreFlow Signal Emitter (Linux) – REDIS Bridge für MT5 Windows
+Vollständig verschlüsselt, FTMO-konform, hybridfähig
+
+Pfad: /opt/coreflow/core/emitter/signal_emitter.py
+"""
+
 import os
-import time
+import sys
 import json
+import redis
 import logging
-from pathlib import Path
+from datetime import datetime, timezone
+from cryptography.fernet import Fernet
 
-class SignalEmitter:
-    def __init__(self):
-        self.setup_logging()
-        self.signal_dir = Path('/opt/coreflow/signals')
-        self.signal_dir.mkdir(exist_ok=True)
-        self.signal_count = 0
+# ===== Logging-Konfiguration =====
+LOG_PATH = '/opt/coreflow/logs/signal_emitter.log'
+os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s | %(levelname)-8s | %(name)-12s | %(message)s',
+    handlers=[
+        logging.FileHandler(LOG_PATH, encoding='utf-8'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger("SignalEmitter")
 
-    def setup_logging(self):
-        """Configure logging for Linux"""
-        log_dir = Path('/opt/coreflow/logs')
-        log_dir.mkdir(exist_ok=True)
-        
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s',
-            handlers=[
-                logging.FileHandler(log_dir/'signal_emitter.log'),
-                logging.StreamHandler()
-            ]
-        )
-        self.logger = logging.getLogger('SignalEmitter')
+# ===== Verschlüsselte .env laden =====
+try:
+    from utils.decrypt_env import load_encrypted_env
+except ImportError:
+    logger.critical("Modul decrypt_env.py fehlt unter /opt/coreflow/utils/")
+    sys.exit(1)
 
-    def create_signal(self, signal_type, data):
-        """Generate a new signal file"""
-        signal_id = f"{int(time.time())}_{self.signal_count}"
-        signal_file = self.signal_dir / f"{signal_id}.json"
-        
-        signal_data = {
-            'id': signal_id,
-            'type': signal_type,
-            'timestamp': time.time(),
-            'data': data
-        }
-        
-        with open(signal_file, 'w') as f:
-            json.dump(signal_data, f)
-        
-        self.signal_count += 1
-        self.logger.info(f"Emitted signal: {signal_id}")
-        return signal_file
+if not load_encrypted_env():
+    logger.critical("❌ .env.enc konnte nicht geladen werden – Abbruch")
+    sys.exit(1)
 
-    def run(self):
-        """Main emission loop"""
-        self.logger.info("Signal Emitter started")
-        while True:
-            # Example: emit test signal every 10 seconds
-            self.create_signal(
-                signal_type='heartbeat',
-                data={'status': 'ok', 'load': os.getloadavg()}
-            )
-            time.sleep(10)
+# ===== Fernet Schlüssel laden =====
+try:
+    with open('/opt/coreflow/infra/vault/encryption.key', 'rb') as f:
+        key = f.read()
+    fernet = Fernet(key)
+except Exception as e:
+    logger.critical(f"Fernet-Key-Fehler: {e}")
+    sys.exit(1)
 
-if __name__ == "__main__":
-    emitter = SignalEmitter()
-    try:
-        emitter.run()
-    except KeyboardInterrupt:
-        emitter.logger.info("Signal Emitter stopped")
+# ===== Redis-Verbindung aufbauen =====
+try:
+    r = redis.Redis(
+        host=os.getenv("REDIS_HOST"),
+        port=int(os.getenv("REDIS_PORT")),
+        password=os.getenv("REDIS_PASSWORD"),
+        ssl=os.getenv("REDIS_SSL", "false").lower() == "true",
+        decode_responses=False
+    )
+    r.ping()
+    logger.info("✅ Redis-Verbindung erfolgreich")
+except Exception as e:
+    logger.critical(f"Redis-Verbindung fehlgeschlagen: {e}")
+    sys.exit(1)
+
+# ===== CLI Parameter validieren =====
+if len(sys.argv) < 4:
+    print("❌ Nutzung: python3 signal_emitter.py SYMBOL ACTION LOT [CONFIDENCE]")
+    print("Beispiel: python3 signal_emitter.py BTCUSD BUY 0.05 0.91")
+    sys.exit(1)
+
+symbol = sys.argv[1].upper()
+action = sys.argv[2].upper()
+lot = float(sys.argv[3])
+confidence = float(sys.argv[4]) if len(sys.argv) > 4 else float(os.getenv("MIN_CONFIDENCE", "0.9"))
+
+# ===== Signal-Objekt erstellen =====
+signal = {
+    "symbol": symbol,
+    "action": action,
+    "lot": lot,
+    "confidence": confidence,
+    "timestamp": datetime.now(timezone.utc).isoformat()
+}
+
+# ===== Signal verschlüsseln und senden =====
+try:
+    encrypted = fernet.encrypt(json.dumps(signal).encode('utf-8'))
+    channel = os.getenv("REDIS_CHANNEL", "trading_signals")
+    r.publish(channel, encrypted)
+
+    logger.info(f"📤 Signal gesendet: {symbol} {action} {lot} → Kanal '{channel}'")
+
+except Exception as e:
+    logger.critical(f"❌ Signalveröffentlichung fehlgeschlagen: {e}")
+    sys.exit(1)

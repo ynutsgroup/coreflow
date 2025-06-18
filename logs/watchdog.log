@@ -1,0 +1,118 @@
+2025-06-18 15:19:43,008 | INFO | 🚀 CoreFlow Watchdog started
+2025-06-18 15:19:43,008 | WARNING | Telegram credentials not configured
+2025-06-18 15:19:43,009 | INFO | ✅ Process started (PID: 1244)
+2025-06-18 15:19:43,009 | WARNING | Telegram credentials not configured
+2025-06-18 15:20:13,042 | INFO | ✅ Process started (PID: 1371)
+2025-06-18 15:20:13,042 | WARNING | Telegram credentials not configured
+2025-06-18 15:20:43,073 | INFO | ✅ Process started (PID: 1372)
+2025-06-18 15:20:43,073 | WARNING | Telegram credentials not configured
+2025-06-18 15:21:13,106 | INFO | ✅ Process started (PID: 1373)
+2025-06-18 15:21:13,107 | WARNING | Telegram credentials not configured
+2025-06-18 15:21:43,140 | INFO | ✅ Process started (PID: 1374)
+2025-06-18 15:21:43,140 | WARNING | Telegram credentials not configured
+2025-06-18 15:22:13,171 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 15:22:13,171 | WARNING | Telegram credentials not configured
+2025-06-18 15:27:13,184 | INFO | ✅ Process started (PID: 1610)
+2025-06-18 15:27:13,184 | WARNING | Telegram credentials not configured
+2025-06-18 15:27:43,216 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 15:27:43,216 | WARNING | Telegram credentials not configured
+2025-06-18 15:32:43,318 | INFO | ✅ Process started (PID: 1736)
+2025-06-18 15:32:43,318 | WARNING | Telegram credentials not configured
+2025-06-18 15:33:13,349 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 15:33:13,349 | WARNING | Telegram credentials not configured
+2025-06-18 15:38:13,376 | INFO | ✅ Process started (PID: 1817)
+2025-06-18 15:38:13,376 | WARNING | Telegram credentials not configured
+2025-06-18 15:38:43,408 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 15:38:43,408 | WARNING | Telegram credentials not configured
+2025-06-18 15:43:43,472 | INFO | ✅ Process started (PID: 1836)
+2025-06-18 15:43:43,472 | WARNING | Telegram credentials not configured
+2025-06-18 15:44:13,503 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 15:44:13,503 | WARNING | Telegram credentials not configured
+2025-06-18 15:49:13,568 | INFO | ✅ Process started (PID: 1853)
+2025-06-18 15:49:13,568 | WARNING | Telegram credentials not configured
+2025-06-18 15:49:43,600 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 15:49:43,601 | WARNING | Telegram credentials not configured
+2025-06-18 15:54:43,703 | INFO | ✅ Process started (PID: 1897)
+2025-06-18 15:54:43,703 | WARNING | Telegram credentials not configured
+2025-06-18 15:55:13,734 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 15:55:13,735 | WARNING | Telegram credentials not configured
+2025-06-18 16:00:13,836 | INFO | ✅ Process started (PID: 1929)
+2025-06-18 16:00:13,837 | WARNING | Telegram credentials not configured
+2025-06-18 16:00:43,867 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:00:43,868 | WARNING | Telegram credentials not configured
+2025-06-18 16:05:43,970 | INFO | ✅ Process started (PID: 1949)
+2025-06-18 16:05:43,970 | WARNING | Telegram credentials not configured
+2025-06-18 16:06:14,001 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:06:14,001 | WARNING | Telegram credentials not configured
+2025-06-18 16:11:14,103 | INFO | ✅ Process started (PID: 1967)
+2025-06-18 16:11:14,103 | WARNING | Telegram credentials not configured
+2025-06-18 16:11:44,135 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:11:44,135 | WARNING | Telegram credentials not configured
+2025-06-18 16:16:44,237 | INFO | ✅ Process started (PID: 2280)
+2025-06-18 16:16:44,237 | WARNING | Telegram credentials not configured
+2025-06-18 16:17:14,268 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:17:14,268 | WARNING | Telegram credentials not configured
+2025-06-18 16:22:14,370 | INFO | ✅ Process started (PID: 2303)
+2025-06-18 16:22:14,371 | WARNING | Telegram credentials not configured
+2025-06-18 16:22:44,401 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:22:44,402 | WARNING | Telegram credentials not configured
+2025-06-18 16:27:44,503 | INFO | ✅ Process started (PID: 2334)
+2025-06-18 16:27:44,504 | WARNING | Telegram credentials not configured
+2025-06-18 16:28:14,535 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:28:14,535 | WARNING | Telegram credentials not configured
+2025-06-18 16:33:14,637 | INFO | ✅ Process started (PID: 2471)
+2025-06-18 16:33:14,637 | WARNING | Telegram credentials not configured
+2025-06-18 16:33:44,669 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:33:44,669 | WARNING | Telegram credentials not configured
+2025-06-18 16:38:44,728 | INFO | ✅ Process started (PID: 2492)
+2025-06-18 16:38:44,728 | WARNING | Telegram credentials not configured
+2025-06-18 16:39:14,743 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:39:14,743 | WARNING | Telegram credentials not configured
+2025-06-18 16:44:14,845 | INFO | ✅ Process started (PID: 2510)
+2025-06-18 16:44:14,845 | WARNING | Telegram credentials not configured
+2025-06-18 16:44:44,876 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:44:44,877 | WARNING | Telegram credentials not configured
+2025-06-18 16:49:44,888 | INFO | ✅ Process started (PID: 2600)
+2025-06-18 16:49:44,888 | WARNING | Telegram credentials not configured
+2025-06-18 16:50:14,903 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:50:14,903 | WARNING | Telegram credentials not configured
+2025-06-18 16:55:15,005 | INFO | ✅ Process started (PID: 2631)
+2025-06-18 16:55:15,005 | WARNING | Telegram credentials not configured
+2025-06-18 16:55:45,036 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 16:55:45,037 | WARNING | Telegram credentials not configured
+2025-06-18 17:00:45,139 | INFO | ✅ Process started (PID: 2709)
+2025-06-18 17:00:45,139 | WARNING | Telegram credentials not configured
+2025-06-18 17:01:15,170 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 17:01:15,170 | WARNING | Telegram credentials not configured
+2025-06-18 17:06:15,272 | INFO | ✅ Process started (PID: 2736)
+2025-06-18 17:06:15,272 | WARNING | Telegram credentials not configured
+2025-06-18 17:06:45,303 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 17:06:45,304 | WARNING | Telegram credentials not configured
+2025-06-18 17:11:45,405 | INFO | ✅ Process started (PID: 2753)
+2025-06-18 17:11:45,406 | WARNING | Telegram credentials not configured
+2025-06-18 17:12:15,437 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 17:12:15,437 | WARNING | Telegram credentials not configured
+2025-06-18 17:17:15,539 | INFO | ✅ Process started (PID: 2775)
+2025-06-18 17:17:15,539 | WARNING | Telegram credentials not configured
+2025-06-18 17:17:45,571 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 17:17:45,571 | WARNING | Telegram credentials not configured
+2025-06-18 17:22:45,616 | INFO | ✅ Process started (PID: 2807)
+2025-06-18 17:22:45,616 | WARNING | Telegram credentials not configured
+2025-06-18 17:23:15,647 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 17:23:15,648 | WARNING | Telegram credentials not configured
+2025-06-18 17:28:15,750 | INFO | ✅ Process started (PID: 2840)
+2025-06-18 17:28:15,750 | WARNING | Telegram credentials not configured
+2025-06-18 17:28:45,781 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 17:28:45,781 | WARNING | Telegram credentials not configured
+2025-06-18 17:33:45,883 | INFO | ✅ Process started (PID: 3036)
+2025-06-18 17:33:45,883 | WARNING | Telegram credentials not configured
+2025-06-18 17:34:15,914 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 17:34:15,914 | WARNING | Telegram credentials not configured
+2025-06-18 17:39:16,016 | INFO | ✅ Process started (PID: 3119)
+2025-06-18 17:39:16,017 | WARNING | Telegram credentials not configured
+2025-06-18 17:39:46,048 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 17:39:46,048 | WARNING | Telegram credentials not configured
+2025-06-18 17:44:46,072 | INFO | ✅ Process started (PID: 3467)
+2025-06-18 17:44:46,072 | WARNING | Telegram credentials not configured
+2025-06-18 17:45:16,103 | WARNING | 🚨 Restart limit reached (5 in 300s)
+2025-06-18 17:45:16,104 | WARNING | Telegram credentials not configured

@@ -7,3 +7,9 @@ __pycache__/
 .env.*
 *.zip
 logs/
+watchdogs/nohup.out
+watchdogs/nohup.out
+watchdogs/*.DISABLED
+watchdogs/*.py
+watchdogs/*.DISABLED
+watchdogs/nohup.out

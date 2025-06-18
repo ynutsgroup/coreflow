@@ -1,104 +1,191 @@
 #!/usr/bin/env python3
-import logging
-import signal
+# CoreFlow Main Execution – Institutional FTMO Edition (Stable v2.6)
+
+import os
 import sys
 import time
+import signal
 import traceback
+import logging
+import asyncio
 import pandas as pd
 from pathlib import Path
-from typing import NoReturn
-from core.strategy.valg_engine import FTMO_VALGEngine
+from dotenv import load_dotenv
+from datetime import datetime
+
+sys.path.insert(0, '/opt/coreflow')
+
 from core.config import Config
-from core.health_check import HealthMonitor
+from core.strategy.valg_engine import FTMO_VALGEngine
+from core.health_check import InstitutionalHealthMonitor
+from utils.telegram_notifier import send_telegram_alert
 
-MAX_RESTARTS = 3
-RESTART_DELAY = 5
+# --- FTMO Konstante ---
+FTMO_MAX_DAILY_LOSS = 0.05
+FTMO_MAX_OVERALL_LOSS = 0.10
+FTMO_MIN_TRADING_DAYS = 5
+FTMO_MAX_DAILY_TRADES = 10
+FTMO_ACCOUNT_SIZE = 100000
 
+# --- Risk Manager ---
+class FTMO_RiskManager:
+    def __init__(self, account_size):
+        self.account_size = account_size
+        self.daily_pnl = 0.0
+        self.total_pnl = 0.0
+        self.today_trades = 0
+        self.trading_days = 0
+        self.last_trade_day = None
+
+    def update_pnl(self, pnl):
+        today = datetime.utcnow().date()
+        if self.last_trade_day != today:
+            if self.last_trade_day is not None:
+                self.trading_days += 1
+            self.last_trade_day = today
+            self.daily_pnl = 0.0
+            self.today_trades = 0
+        self.daily_pnl += pnl
+        self.total_pnl += pnl
+        self.today_trades += 1
+
+    def check_limits(self):
+        if self.daily_pnl < -FTMO_MAX_DAILY_LOSS * self.account_size:
+            return False
+        if self.total_pnl < -FTMO_MAX_OVERALL_LOSS * self.account_size:
+            return False
+        if self.today_trades >= FTMO_MAX_DAILY_TRADES:
+            return False
+        return True
+
+    def get_risk_per_trade(self):
+        return 0.005 if self.daily_pnl < 0 else 0.01
+
+# --- Application State ---
 class ApplicationState:
-    """Globaler Anwendungszustand"""
-    _instance = None
-    
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-            cls._instance.shutdown_flag = False
-            cls._instance.restart_count = 0
-        return cls._instance
-
-class GracefulExiter:
-    """Handles graceful shutdown signals"""
     def __init__(self):
-        self.state = ApplicationState()
-        signal.signal(signal.SIGINT, self.exit_gracefully)
-        signal.signal(signal.SIGTERM, self.exit_gracefully)
+        self.shutdown_flag = False
+        self.risk_manager = None
 
-    def exit_gracefully(self, signum, frame) -> None:
-        self.state.shutdown_flag = True
-        logging.info(f"Received shutdown signal {signum}")
-
-def setup_logging() -> None:
-    """Setup logging for CoreFlow"""
+# --- Logging Setup ---
+def setup_logging():
     log_dir = Path(Config.LOG_DIR)
-    log_dir.mkdir(exist_ok=True, parents=True)
-    
+    log_dir.mkdir(parents=True, exist_ok=True)
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s | %(levelname)s | %(message)s",
         handlers=[
             logging.FileHandler(log_dir / "coreflow.log"),
-            logging.StreamHandler(),
+            logging.StreamHandler()
         ]
     )
 
-def initialize() -> bool:
-    """Initialize system components"""
+# --- Initialization ---
+async def initialize(state):
     try:
-        HealthMonitor().start()
+        InstitutionalHealthMonitor(interval=60).start()
+        logging.info("📡 HealthMonitor Logging aktiv")
+        state.risk_manager = FTMO_RiskManager(FTMO_ACCOUNT_SIZE)
+        logging.info("✅ FTMO System initialization completed")
         return True
     except Exception as e:
-        logging.critical(f"Initialization failed: {str(e)}")
+        logging.critical(f"Initialization failed: {e}")
+        await send_telegram_alert(f"❌ Init-Fehler: {e}")
         return False
 
-def main_loop() -> None:
-    """Main application loop"""
-    state = ApplicationState()
-    exiter = GracefulExiter()
+# --- Execute Trade ---
+async def execute_trade(state, engine, signal):
+    if not signal or not isinstance(signal, dict):
+        logging.warning("⚠️ Ungültiges Signal ignoriert (None oder kein Dict)")
+        return
+    if "symbol" not in signal or "side" not in signal:
+        logging.warning(f"⚠️ Signal unvollständig: {signal}")
+        return
 
-    engine = FTMO_VALGEngine(account_size=100000, max_risk_per_trade=0.01, volatility_window=34)
+    if not state.risk_manager.check_limits():
+        logging.warning("🚫 Trade geblockt: Risikolimit erreicht")
+        await send_telegram_alert("🚫 Trade geblockt: Risikolimit erreicht")
+        return
+
+    risk_pct = state.risk_manager.get_risk_per_trade()
+    try:
+        result = await engine.execute_trade(
+            signal=signal,
+            risk_percent=risk_pct,
+            account_size=FTMO_ACCOUNT_SIZE
+        )
+        state.risk_manager.update_pnl(result.get("pnl", 0.0))
+        logging.info(f"✅ Trade ausgeführt: {result}")
+        await send_telegram_alert(f"✅ Trade: {result}")
+    except Exception as e:
+        logging.error(f"Trade-Fehler: {e}")
+        await send_telegram_alert(f"⚠️ Trade-Fehler: {e}")
+
+# --- Main Loop ---
+async def main_loop(state, engine):
+    data_path = Path(os.getenv("MARKET_DATA_FILE", "/opt/coreflow/data/market_data.csv"))
+    last_check = 0
 
     while not state.shutdown_flag:
         try:
-            df = pd.read_csv("market_data.csv")  # Example of reading market data
-            signals = engine.generate_signals(df)
+            if not state.risk_manager.check_limits():
+                state.shutdown_flag = True
+                logging.critical("🚩 Limit verletzt – CoreFlow stoppt")
+                await send_telegram_alert("🚩 Limit verletzt – CoreFlow stoppt")
+                break
 
-            if signals['signal'].iloc[-1] != 0:
-                signal = engine.last_signal
-                if execute_trade(signal, state):
-                    logging.info(f"Executed trade: {signal['direction']} {signal['size']} lots")
+            if time.time() - last_check >= 60:
+                if not data_path.exists():
+                    logging.warning("📁 market_data.csv nicht gefunden")
+                    await send_telegram_alert("⚠️ market_data.csv fehlt!")
+                    await asyncio.sleep(30)
+                    continue
 
-            time.sleep(60)  # Check every minute
+                try:
+                    df = pd.read_csv(data_path)
+                    signals = engine.generate_signals(df)
+                    for signal in signals:
+                        await execute_trade(state, engine, signal)
+                    last_check = time.time()
+                except Exception as e:
+                    logging.error(f"📉 Fehler bei Datenverarbeitung: {e}")
+                    await send_telegram_alert(f"⚠️ Datenfehler: {e}")
+                    await asyncio.sleep(30)
+
+            await asyncio.sleep(1)
+
         except Exception as e:
-            logging.error(f"Unexpected error: {str(e)}")
-            time.sleep(60)
+            logging.error(f"💥 Hauptloop-Fehler: {e}\n{traceback.format_exc()}")
+            await send_telegram_alert(f"⚠️ Hauptloop-Fehler: {e}")
+            await asyncio.sleep(10)
 
-def execute_trade(signal, state):
-    """Executes trade if conditions are met"""
-    if state.today_trades >= 5:  # Example daily trade limit check
-        logging.warning("Max daily trades reached")
-        return False
-    logging.info(f"Executing trade: {signal['symbol']} {signal['action']}")
-    state.today_trades += 1
-    return True
-
-def main() -> NoReturn:
-    """Main function"""
+# --- Async Main ---
+async def async_main():
     setup_logging()
-    logger = logging.getLogger(__name__)
+    load_dotenv("/opt/coreflow/.env")
+    logging.info("🧠 Starting CoreFlow Institutional Trading System")
+    await send_telegram_alert("🧠 CoreFlow wird gestartet...")
 
-    if not initialize():
+    state = ApplicationState()
+    engine = FTMO_VALGEngine(
+        account_size=FTMO_ACCOUNT_SIZE,
+        max_risk_per_trade=0.01,
+        volatility_window=34
+    )
+
+    if not await initialize(state):
+        logging.critical("❌ Init fehlgeschlagen")
         sys.exit(1)
 
-    main_loop()
+    await main_loop(state, engine)
 
+# --- Start ---
 if __name__ == "__main__":
-    main()
+    try:
+        asyncio.run(async_main())
+    except KeyboardInterrupt:
+        print("⛔ Manuell beendet")
+        sys.exit(0)
+    except Exception as e:
+        print(f"💥 Abbruch: {e}")
+        sys.exit(1)
