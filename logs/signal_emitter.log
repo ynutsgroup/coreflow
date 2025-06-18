@@ -75,3 +75,19 @@
 2025-06-18 17:38:23,260 | INFO     | EnvDecryptor   | 🔓 .env.enc erfolgreich entschlüsselt und geladen
 2025-06-18 17:38:23,262 | INFO     | SignalEmitter  | ✅ Redis-Verbindung erfolgreich
 2025-06-18 17:38:23,262 | INFO     | SignalEmitter  | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'BUY', 'lot': 0.2, 'confidence': 0.87, 'timestamp': '2025-06-18T17:38:23.262398+00:00'}
+2025-06-18 17:58:32,396 | INFO     | EnvDecryptor   | 🔓 .env.enc erfolgreich entschlüsselt und geladen
+2025-06-18 17:58:32,398 | INFO     | SignalEmitter  | ✅ Redis-Verbindung erfolgreich
+2025-06-18 17:58:32,398 | INFO     | SignalEmitter  | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'BUY', 'lot': 0.2, 'confidence': 0.87, 'timestamp': '2025-06-18T17:58:32.398361+00:00'}
+2025-06-18 18:05:48,079 | INFO     | EnvDecryptor   | 🔓 .env.enc erfolgreich entschlüsselt und geladen
+2025-06-18 18:05:48,081 | INFO     | SignalEmitter  | ✅ Redis-Verbindung erfolgreich
+2025-06-18 18:05:48,082 | INFO     | SignalEmitter  | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'BUY', 'lot': 0.2, 'confidence': 0.87, 'timestamp': '2025-06-18T18:05:48.081963+00:00'}
+2025-06-18 18:06:59,215 | INFO     | EnvDecryptor   | 🔓 .env.enc erfolgreich entschlüsselt und geladen
+2025-06-18 18:06:59,217 | INFO     | SignalEmitter  | ✅ Redis-Verbindung erfolgreich
+2025-06-18 18:06:59,217 | INFO     | SignalEmitter  | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'SELL', 'lot': 0.1, 'confidence': 0.92, 'timestamp': '2025-06-18T18:06:59.217516+00:00'}
+2025-06-18 18:07:07,856 | INFO     | EnvDecryptor   | 🔓 .env.enc erfolgreich entschlüsselt und geladen
+2025-06-18 18:07:07,858 | INFO     | SignalEmitter  | ✅ Redis-Verbindung erfolgreich
+2025-06-18 18:07:07,859 | INFO     | SignalEmitter  | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'SELL', 'lot': 0.1, 'confidence': 0.92, 'timestamp': '2025-06-18T18:07:07.858730+00:00'}
+2025-06-18 18:24:22,606 | INFO     | SignalEmitter   | ✅ Redis-Verbindung erfolgreich
+2025-06-18 18:24:22,606 | INFO     | SignalEmitter   | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'SELL', 'lot': 0.1, 'confidence': 0.92, 'timestamp': '2025-06-18T18:24:22.606497+00:00'}
+2025-06-18 18:26:43,084 | INFO     | SignalEmitter   | ✅ Redis-Verbindung erfolgreich
+2025-06-18 18:26:43,085 | INFO     | SignalEmitter   | 📤 Signal gesendet → eurusd_signals: {'symbol': 'EURUSD', 'action': 'SELL', 'lot': 0.1, 'confidence': 0.92, 'timestamp': '2025-06-18T18:26:43.085022+00:00'}
