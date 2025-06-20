@@ -2,9 +2,9 @@
 # CoreFlow KI System – optimiertes .gitignore
 # ==============================================
 
-# --------------------------
-# Python-spezifische Einträge
-# --------------------------
+# ---------------------------------------------
+# 🐍 Python-spezifisch
+# ---------------------------------------------
 __pycache__/
 *.py[cod]
 *.so
@@ -16,9 +16,9 @@ dist/
 venv/
 .python-version
 
-# --------------------------
-# Logs & temporäre Dateien
-# --------------------------
+# ---------------------------------------------
+# 🪵 Logs & temporäre Dateien
+# ---------------------------------------------
 *.log
 *.log.*
 nohup.out
@@ -27,10 +27,11 @@ tmp/
 *.swp
 *.swo
 *.swn
+*.bak
 
-# --------------------------
-# System/IDE-spezifisches
-# --------------------------
+# ---------------------------------------------
+# 💻 IDE/Editor/OS-Dateien
+# ---------------------------------------------
 .DS_Store
 .idea/
 .vscode/
@@ -40,9 +41,9 @@ tmp/
 *.sln
 *.sw?
 
-# --------------------------
-# Sicherheitsrelevantes
-# --------------------------
+# ---------------------------------------------
+# 🔐 Sicherheits-/Secrets-Dateien
+# ---------------------------------------------
 .env
 .env.*
 *.enc
@@ -52,27 +53,27 @@ tmp/
 *.fingerprint.json
 secrets/
 
-# --------------------------
-# Backups & Archive
-# --------------------------
+# ---------------------------------------------
+# 📦 Backups, große Files, Binärdaten
+# ---------------------------------------------
 *.zip
 *.tar.gz
+*.tar
 *.7z
-backups/
-*.bak
-
-# --------------------------
-# CoreFlow-spezifische Einträge
-# --------------------------
-# Watchdog-Ausgaben
-watchdogs/nohup.out
-watchdogs/*.DISABLED
-
-# --------------------------
-# Datenbanken & Large Files
-# --------------------------
 *.db
 *.sqlite
 *.h5
 *.weights
 *.pickle
+*.exe
+*.bin
+backups/
+coreflow_backup_*.tar.gz
+coreflow_env_backup_*.tar.gz
+
+# ---------------------------------------------
+# ⚠️ CoreFlow-spezifisch
+# ---------------------------------------------
+watchdogs/nohup.out
+watchdogs/*.DISABLED
+msg_store.db
