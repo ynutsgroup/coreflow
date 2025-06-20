@@ -1,0 +1,251 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+CFM – VALG Engine CPU Edition (CoreFlow Ultimate Pro)
+FTMO-konform | Redis Secure Cluster | Telegram Notifier | Advanced Signal Engine
+"""
+
+import os
+import sys
+import time
+import json
+import logging
+import signal
+import hashlib
+from datetime import datetime, timezone
+from typing import List, Dict
+from enum import Enum, auto
+
+import redis
+import numpy as np
+from dotenv import load_dotenv
+from cryptography.fernet import Fernet, InvalidToken
+import requests
+
+# === Konstanten ===
+MAX_RETRIES = 3
+RETRY_DELAY = 1.5
+TRADE_SYMBOLS_DEFAULT = "EURUSD,XAUUSD,GBPUSD"
+
+# === .env laden ===
+load_dotenv("/opt/coreflow/tmp/.env")
+
+# === Logging Setup ===
+class EnhancedLogger:
+    @staticmethod
+    def setup() -> logging.Logger:
+        log_dir = os.getenv("LOG_DIR_LINUX", "/opt/coreflow/logs")
+        os.makedirs(log_dir, exist_ok=True)
+        log_file = os.path.join(log_dir, "valg_engine_pro.log")
+
+        logger = logging.getLogger("VALG.PRO")
+        logger.setLevel(logging.INFO)
+
+        formatter = logging.Formatter(
+            "%(asctime)s | %(levelname)-8s | VALG.PRO | %(message)s",
+            datefmt="%Y-%m-%d %H:%M:%S%z"
+        )
+
+        file_handler = logging.FileHandler(log_file, encoding="utf-8")
+        file_handler.setFormatter(formatter)
+
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
+
+        logger.addHandler(file_handler)
+        logger.addHandler(console_handler)
+
+        return logger
+
+logger = EnhancedLogger.setup()
+
+# === Fernet Key laden ===
+class SecurityManager:
+    @staticmethod
+    def load_fernet_key() -> Fernet:
+        key_path = os.getenv("FERNET_KEY_PATH", "/opt/coreflow/secure/vault.key")
+        try:
+            with open(key_path, "rb") as f:
+                return Fernet(f.read())
+        except Exception as e:
+            logger.critical(f"🔑 Fernet Key Error: {e}")
+            sys.exit(1)
+
+FERNET = SecurityManager.load_fernet_key()
+
+# === Redis Verbindung ===
+class RedisCluster:
+    def __init__(self):
+        self.client = self._connect_with_retry()
+
+    def _connect_with_retry(self) -> redis.Redis:
+        hosts = os.getenv("REDIS_CLUSTER_HOSTS", "").split(",")
+        if not hosts or not hosts[0]:
+            hosts = [os.getenv("REDIS_HOST", "localhost")]
+
+        for attempt in range(MAX_RETRIES):
+            for host in hosts:
+                try:
+                    client = redis.Redis(
+                        host=host.strip(),
+                        port=int(os.getenv("REDIS_PORT", 6379)),
+                        password=os.getenv("REDIS_PASSWORD"),
+                        decode_responses=True,
+                        socket_timeout=10,
+                        socket_keepalive=True,
+                        health_check_interval=30
+                    )
+                    if client.ping():
+                        logger.info(f"✅ Redis verbunden: {host}")
+                        return client
+                except redis.RedisError as e:
+                    logger.warning(f"⚠️ Redis Fehler bei {host}: {e}")
+                    if attempt < MAX_RETRIES - 1:
+                        time.sleep(RETRY_DELAY)
+
+        logger.critical("❌ Redis Verbindung fehlgeschlagen")
+        sys.exit(1)
+
+    def publish(self, channel: str, message: str) -> bool:
+        try:
+            return bool(self.client.publish(channel, message))
+        except redis.RedisError as e:
+            logger.error(f"Redis publish error: {e}")
+            return False
+
+redis_cluster = RedisCluster()
+REDIS_CHANNEL = os.getenv("REDIS_CHANNEL", "coreflow_signals_pro")
+
+# === Telegram Notifier ===
+class TelegramNotifier:
+    def __init__(self):
+        self.token = os.getenv("TELEGRAM_TOKEN")
+        self.chat_id = os.getenv("TELEGRAM_CHAT_ID")
+        self.timeout = 15
+        self.session = requests.Session()
+
+    def send(self, message: str, level: str = "INFO") -> bool:
+        if not self.token or not self.chat_id:
+            return False
+
+        prefix = {"INFO": "ℹ️", "WARNING": "⚠️", "ERROR": "❌", "CRITICAL": "🔥"}.get(level, "ℹ️")
+
+        try:
+            response = self.session.post(
+                f"https://api.telegram.org/bot{self.token}/sendMessage",
+                json={
+                    "chat_id": self.chat_id,
+                    "text": f"{prefix} {message}",
+                    "parse_mode": "Markdown"
+                },
+                timeout=self.timeout
+            )
+            response.raise_for_status()
+            return True
+        except Exception as e:
+            logger.warning(f"Telegram Fehler: {e}")
+            return False
+
+telegram = TelegramNotifier()
+
+# === Signal Engine ===
+class TradeMode(Enum):
+    DEMO = auto()
+    LIVE = auto()
+    BACKTEST = auto()
+
+class SignalEngine:
+    def __init__(self):
+        self.symbols = self._load_symbols()
+        self.confidence = self._validate_confidence(
+            float(os.getenv("VALG_CONFIDENCE", 0.85))
+        )
+        self.mode = self._parse_trade_mode(
+            os.getenv("TRADE_MODE", "DEMO")
+        )
+        self.signal_count = 0
+
+    def _load_symbols(self) -> List[str]:
+        symbols = os.getenv("TRADE_SYMBOLS", TRADE_SYMBOLS_DEFAULT).split(",")
+        return [s.strip().upper() for s in symbols if s.strip()]
+
+    def _validate_confidence(self, confidence: float) -> float:
+        return max(0.5, min(1.0, confidence))
+
+    def _parse_trade_mode(self, mode_str: str) -> TradeMode:
+        try:
+            return TradeMode[mode_str.upper()]
+        except KeyError:
+            logger.warning(f"Ungültiger TRADE_MODE: {mode_str}, fallback auf DEMO")
+            return TradeMode.DEMO
+
+    def create_signal(self, symbol: str, direction: str) -> Dict:
+        return {
+            "signal_id": hashlib.sha256(f"{symbol}{time.time_ns()}".encode()).hexdigest()[:16],
+            "symbol": symbol.upper(),
+            "direction": direction.upper(),
+            "confidence": round(self.confidence, 4),
+            "mode": self.mode.name,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "source": "VALG.PRO",
+            "version": "1.1"
+        }
+
+    def encrypt_and_publish(self, signal: Dict) -> bool:
+        for attempt in range(MAX_RETRIES):
+            try:
+                payload = json.dumps(signal, ensure_ascii=False)
+                encrypted = FERNET.encrypt(payload.encode()).decode()
+
+                if redis_cluster.publish(REDIS_CHANNEL, encrypted):
+                    logger.info(
+                        f"💹 Signal #{self.signal_count + 1}: {signal['symbol']} {signal['direction']} Conf: {signal['confidence']}"
+                    )
+                    self.signal_count += 1
+                    return True
+            except InvalidToken as e:
+                logger.error(f"Encryption error: {e}")
+                break
+            except Exception as e:
+                logger.warning(f"Retry {attempt + 1}/{MAX_RETRIES} failed: {e}")
+                time.sleep(RETRY_DELAY)
+
+        logger.error(f"❌ Signal-Veröffentlichung fehlgeschlagen: {signal['symbol']}")
+        telegram.send(f"Signal fehlgeschlagen: {signal['symbol']}", "ERROR")
+        return False
+
+# === Graceful Shutdown ===
+def shutdown_handler(signum, frame):
+    logger.warning("🛑 Shutdown Signal empfangen")
+    telegram.send("VALG Engine beendet sich...", "WARNING")
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, shutdown_handler)
+signal.signal(signal.SIGTERM, shutdown_handler)
+
+# === Main ===
+def main():
+    logger.info("🚀 VALG Pro Engine gestartet")
+    telegram.send("VALG Pro Engine initialisiert", "INFO")
+
+    try:
+        engine = SignalEngine()
+        if not engine.symbols:
+            logger.error("Keine Symbole konfiguriert")
+            telegram.send("Keine gültigen Symbole geladen", "ERROR")
+            return
+
+        for symbol in engine.symbols:
+            signal_data = engine.create_signal(symbol, "BUY")
+            engine.encrypt_and_publish(signal_data)
+
+        logger.info(f"✅ {engine.signal_count} Signale verarbeitet")
+        telegram.send(f"VALG abgeschlossen – {engine.signal_count} Signale", "INFO")
+
+    except Exception as e:
+        logger.critical(f"💥 VALG Engine Fehler: {e}")
+        telegram.send(f"Crash: {str(e)}", "CRITICAL")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

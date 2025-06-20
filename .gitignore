@@ -1,15 +1,78 @@
-# CoreFlow .gitignore
+# ==============================================
+# CoreFlow KI System – optimiertes .gitignore
+# ==============================================
+
+# --------------------------
+# Python-spezifische Einträge
+# --------------------------
 __pycache__/
-*.pyc
-*.log
+*.py[cod]
+*.so
+.Python
+build/
+dist/
+*.egg-info/
 .venv/
+venv/
+.python-version
+
+# --------------------------
+# Logs & temporäre Dateien
+# --------------------------
+*.log
+*.log.*
+nohup.out
+logs/
+tmp/
+*.swp
+*.swo
+*.swn
+
+# --------------------------
+# System/IDE-spezifisches
+# --------------------------
+.DS_Store
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --------------------------
+# Sicherheitsrelevantes
+# --------------------------
 .env
 .env.*
+*.enc
+*.key
+*.pem
+*.cert
+*.fingerprint.json
+secrets/
+
+# --------------------------
+# Backups & Archive
+# --------------------------
 *.zip
-logs/
-watchdogs/nohup.out
+*.tar.gz
+*.7z
+backups/
+*.bak
+
+# --------------------------
+# CoreFlow-spezifische Einträge
+# --------------------------
+# Watchdog-Ausgaben
 watchdogs/nohup.out
 watchdogs/*.DISABLED
-watchdogs/*.py
-watchdogs/*.DISABLED
-watchdogs/nohup.out
+
+# --------------------------
+# Datenbanken & Large Files
+# --------------------------
+*.db
+*.sqlite
+*.h5
+*.weights
+*.pickle

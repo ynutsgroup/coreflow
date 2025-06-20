@@ -1,0 +1,13 @@
+[Unit]
+Description=CoreFlow Captain – File Integrity Monitor
+After=network.target
+
+[Service]
+Type=simple
+User=coreadmin
+WorkingDirectory=/opt/coreflow/
+ExecStart=/opt/coreflow/.venv/bin/python3 /opt/coreflow/utils/coreflow_captain.py monitor --path /opt/coreflow/core --extensions .py --interval 300
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
