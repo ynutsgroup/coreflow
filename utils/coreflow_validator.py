@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-CoreFlow Essential Validator
-🔍 Prüft NUR Redis-ENV + Verbindung (ohne Windows/MT5)
+CoreFlow Redis Validator
+✅ Testet ENV-Ladung + Redis-Verbindung
 """
 
 import os
@@ -14,99 +14,81 @@ from pathlib import Path
 from cryptography.fernet import Fernet
 from dotenv import load_dotenv
 
-# === Logging ===
+# Logging Setup
 logging.basicConfig(
     level=logging.INFO,
-    format='%(levelname)s - %(message)s',
+    format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[logging.StreamHandler()]
 )
 logger = logging.getLogger(__name__)
 
-# === Pfade ===
+# Pfad-Konfiguration
 ENV_DIR = Path("/opt/coreflow/")
 ENCRYPTION_KEY = Path("/opt/coreflow/infra/vault/encryption.key")
 TMP_ENV = Path("/tmp/coreflow.env.decrypted")
 
-# === ENV-Variablen ===
+# Required Variables
 REQUIRED_VARS = {
-    'REDIS_HOST': None,      # Pflichtfeld
-    'REDIS_PORT': 6380,      # Default: 6380
-    'REDIS_PASSWORD': '',    # Optional (leer = kein Passwort)
-    'APP_ENV': 'production'  # Default-Wert
+    'REDIS_HOST': None,
+    'REDIS_PORT': 6380,
+    'REDIS_PASSWORD': ''
 }
 
 def load_encrypted_env() -> bool:
     """Lädt die verschlüsselte .env.enc Datei"""
     try:
-        # Finde neueste .env.enc
-        env_file = max(ENV_DIR.rglob('.env.enc'), key=lambda f: f.stat().st_mtime)
-        
-        # Entschlüssele
+        env_files = list(ENV_DIR.rglob('.env.enc'))
+        if not env_files:
+            raise FileNotFoundError("Keine .env.enc Datei gefunden")
+        env_file = max(env_files, key=lambda f: f.stat().st_mtime)
         key = ENCRYPTION_KEY.read_bytes()
         decrypted = Fernet(key).decrypt(env_file.read_bytes())
-        
-        # Lade ENV
         TMP_ENV.write_bytes(decrypted)
         load_dotenv(TMP_ENV, override=True)
-        TMP_ENV.unlink()  # Sicher löschen
-        
-        logger.info(f"ENV erfolgreich geladen: {env_file}")
+        TMP_ENV.unlink(missing_ok=True)
+        logger.info(f"ENV geladen aus {env_file}")
         return True
-        
     except Exception as e:
         logger.error(f"ENV-Fehler: {str(e)}")
         return False
 
-def test_redis() -> bool:
-    """Testet die Redis-Verbindung mit 3 Checks"""
+def test_redis_connection() -> bool:
+    """Testet die Redis-Verbindung"""
     try:
         conf = {
             'host': os.getenv('REDIS_HOST'),
             'port': int(os.getenv('REDIS_PORT', 6380)),
             'password': os.getenv('REDIS_PASSWORD') or None,
-            'socket_timeout': 3
+            'socket_timeout': 3,
+            'socket_connect_timeout': 3
         }
-        
-        # 1. TCP-Verbindung
         with socket.socket() as s:
             s.settimeout(3)
             if s.connect_ex((conf['host'], conf['port'])) != 0:
-                raise ConnectionError(f"Port {conf['port']} blockiert")
-        
-        # 2. Redis Ping
+                raise ConnectionError(f"Port {conf['port']} nicht erreichbar")
         r = redis.Redis(**conf)
         if not r.ping():
             raise RuntimeError("Redis nicht responsiv")
-        
-        # 3. Datenkonsistenz
         test_key = "coreflow:healthcheck"
         r.set(test_key, "1", ex=5)
-        if r.get(test_key) != "1":
-            raise RuntimeError("Daten korrupt")
-        
-        logger.info(f"Redis {conf['host']}:{conf['port']} ✔️")
+        if r.get(test_key) != b"1":
+            raise RuntimeError("Dateninkonsistenz")
+        logger.info(f"Redis {conf['host']}:{conf['port']} ✔️ Verbindung erfolgreich")
         return True
-        
     except Exception as e:
         logger.error(f"Redis-Fehler: {str(e)}")
         return False
 
 def main():
-    # 1. ENV laden
     if not load_encrypted_env():
         sys.exit(1)
-    
-    # 2. Variablen prüfen
     missing_vars = [k for k, v in REQUIRED_VARS.items() if not os.getenv(k) and v is None]
     if missing_vars:
-        logger.error(f"Fehlende ENV-Variablen: {', '.join(missing_vars)}")
+        logger.error(f"Fehlende Variablen: {', '.join(missing_vars)}")
         sys.exit(2)
-    
-    # 3. Redis testen
-    if not test_redis():
+    if not test_redis_connection():
         sys.exit(3)
-    
-    logger.info("✅ System bereit")
+    logger.info("✅ Alle Systemchecks erfolgreich")
     sys.exit(0)
 
 if __name__ == "__main__":
