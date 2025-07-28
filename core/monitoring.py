@@ -5,7 +5,7 @@ import subprocess
 from time import sleep
 
 class LinuxTradingMonitor:
-    def __init__(self, mt5_windows_ip="192.168.1.100", poll_interval=5):
+    def __init__(self, mt5_windows_ip="os.getenv('REDIS_HOST')", poll_interval=5):
         self.mt5_api_url = f"http://{mt5_windows_ip}:5000/mt5/stats"  # Flask-API on Windows
         self.poll_interval = poll_interval
         
@@ -85,7 +85,7 @@ class LinuxTradingMonitor:
             print("\nMonitoring stopped by user")
 
 if __name__ == "__main__":
-    monitor = LinuxTradingMonitor(mt5_windows_ip="192.168.1.100")
+    monitor = LinuxTradingMonitor(mt5_windows_ip="os.getenv('REDIS_HOST')")
     
     # For continuous monitoring (Ctrl+C to stop)
     monitor.continuous_monitoring()

@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-# Async Telegram Notifier for aiogram/async apps
+# CoreFlow Async Telegram Notifier – angepasst an bestehende .env
 
 import os
 from dotenv import load_dotenv
 import aiohttp
 
+# === .env laden ===
 load_dotenv("/opt/coreflow/.env")
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")             # <- exakt wie in deiner .env
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")         # <- exakt wie in deiner .env
 
 async def send_telegram_alert(message: str, alert_type: str = "INFO") -> bool:
-    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+    if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
+        print("❌ Telegram-Konfiguration fehlt – TOKEN oder CHAT_ID nicht gefunden.")
         return False
 
     icon_map = {
@@ -25,10 +28,18 @@ async def send_telegram_alert(message: str, alert_type: str = "INFO") -> bool:
 
     try:
         async with aiohttp.ClientSession() as session:
-            url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-            params = {"chat_id": TELEGRAM_CHAT_ID, "text": text, "parse_mode": "HTML"}
+            url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+            params = {
+                "chat_id": TELEGRAM_CHAT_ID,
+                "text": text,
+                "parse_mode": "HTML"
+            }
             async with session.get(url, params=params) as response:
-                return response.status == 200
+                if response.status == 200:
+                    return True
+                else:
+                    print(f"❌ Telegram API-Fehler: HTTP {response.status}")
+                    return False
     except Exception as e:
-        print(f"Async Telegram Error: {str(e)}")
+        print(f"❌ Async Telegram Exception: {str(e)}")
         return False

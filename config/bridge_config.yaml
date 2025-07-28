@@ -1,0 +1,57 @@
+# /etc/trading/config.yaml
+# CoreFlow Trading System Configuration
+# Environment variable substitution: ${VAR:-default}
+
+version: 3.2
+environment: ${APP_ENV:-production}
+
+infrastructure:
+  redis:
+    host: ${REDIS_HOST:-redis.service.consul}
+    port: ${REDIS_PORT:-6379}
+    db: ${REDIS_DB:-0}
+    stream: ${REDIS_STREAM:-trading_signals}
+    use_ssl: ${REDIS_USE_SSL:-true}
+    timeout_seconds: ${REDIS_TIMEOUT:-10}
+    retry_attempts: ${REDIS_RETRIES:-3}
+    max_connections: ${REDIS_MAX_CONNS:-50}
+
+security:
+  cryptography:
+    fernet:
+      key_path: ${FERNET_KEY_PATH:-/opt/coreflow/secrets/fernet.key}
+      key_rotation_days: ${FERNET_ROTATION_DAYS:-30}
+      key_backup_count: ${FERNET_BACKUP_KEYS:-3}
+    secrets_provider: ${SECRETS_PROVIDER:-vault}  # vault/aws/azure/env
+    tls_version: ${TLS_VERSION:-1.2}
+
+observability:
+  logging:
+    level: ${LOG_LEVEL:-INFO}
+    format: "${LOG_FORMAT:-%(asctime)s | %(levelname)-8s | %(name)-24s | %(message)s}"
+    datefmt: "${LOG_DATEFMT:-%Y-%m-%d %H:%M:%S%z}"
+    file_path: ${LOG_PATH:-/var/log/coreflow/trading.log}
+  metrics:
+    enabled: ${METRICS_ENABLED:-true}
+    endpoint: ${METRICS_ENDPOINT:-metrics.service.consul:9090}
+    interval_seconds: ${METRICS_INTERVAL:-30}
+  tracing:
+    enabled: ${TRACING_ENABLED:-false}
+    endpoint: ${TRACING_ENDPOINT:-jaeger.service.consul:6831}
+
+business:
+  trading:
+    default_volume: ${DEFAULT_VOLUME:-0.1}
+    allowed_symbols: ${ALLOWED_SYMBOLS:-EURUSD,GBPUSD,XAUUSD,BTCUSD}
+    max_volume: ${MAX_VOLUME:-100.0}
+    min_volume: ${MIN_VOLUME:-0.01}
+    risk:
+      max_daily_volume: ${MAX_DAILY_VOLUME:-1000.0}
+      max_open_positions: ${MAX_OPEN_POSITIONS:-50}
+
+maintenance:
+  health_check_interval: ${HEALTH_CHECK_INTERVAL:-300}
+  log_retention_days: ${LOG_RETENTION_DAYS:-30}
+  backup:
+    enabled: ${BACKUP_ENABLED:-true}
+    schedule: ${BACKUP_SCHEDULE:-"0 2 * * *"}

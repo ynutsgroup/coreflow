@@ -1,0 +1,309 @@
+#!/usr/bin/env python3
+"""
+Redis-ZMQ Bridge with Streams + Pub/Sub Fallback
+Version 2.3 - Fully Corrected and Production Ready
+"""
+
+import os
+import json
+import time
+import logging
+import redis
+import zmq
+from pathlib import Path
+from cryptography.fernet import Fernet
+from dotenv import load_dotenv
+
+# ============ INITIAL SETUP ============
+load_dotenv('/opt/coreflow/.env')
+
+# ============ CONFIGURATION ============
+class Config:
+    REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+    REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
+    REDIS_PASS = os.getenv("REDIS_PASSWORD")
+    REDIS_STREAM = os.getenv("REDIS_STREAM", "trading_signals")
+    REDIS_CHANNEL = os.getenv("REDIS_CHANNEL", "signal_updates")
+    REDIS_GROUP = os.getenv("REDIS_GROUP", "coreflow_group")
+    REDIS_CONSUMER = os.getenv("REDIS_CONSUMER", f"bridge_{os.uname().nodename}")
+
+    ZMQ_BIND = os.getenv("ZMQ_BIND_ADDR", "tcp://*:5555")
+    ZMQ_CURVE_SECRET = os.getenv("ZMQ_CURVE_SECRETKEY")
+    ZMQ_CURVE_PUBLIC = os.getenv("ZMQ_CURVE_PUBLICKEY")
+
+    FERNET_KEY = Path(os.getenv("FERNET_KEY_PATH", "/opt/coreflow/secrets/fernet.key"))
+    LOG_DIR = Path(os.getenv("LOG_DIR", "/opt/coreflow/logs"))
+    LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+
+# ============ LOGGING ============
+class LogSetup:
+    def __init__(self):
+        Config.LOG_DIR.mkdir(parents=True, exist_ok=True)
+        
+        self.handlers = [
+            logging.FileHandler(Config.LOG_DIR / "bridge_service.log"),
+            logging.StreamHandler()
+        ]
+
+        logging.basicConfig(
+            level=Config.LOG_LEVEL,
+            format='%(asctime)s | %(levelname)-8s | %(name)-18s | %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S',
+            handlers=self.handlers
+        )
+
+        self.logger = logging.getLogger("BridgeCore")
+        self.logger.info("⚡ Service Initializing")
+
+# ============ CRYPTO ============
+class CryptoManager:
+    @staticmethod
+    def load_fernet():
+        try:
+            with open(Config.FERNET_KEY, 'rb') as f:
+                return Fernet(f.read())
+        except Exception as e:
+            logging.critical(f"🔑 Fernet Key Error: {str(e)}")
+            raise SystemExit(1)
+
+# ============ CONNECTIONS ============
+class ConnectionManager:
+    def __init__(self, crypto):
+        self.crypto = crypto
+        self.logger = logging.getLogger("BridgeConn")
+        self.redis = self._init_redis()
+        self.zmq_context, self.zmq_socket = self._init_zmq()
+
+    def _init_redis(self):
+        """Initialize Redis connection with enhanced authentication"""
+        redis_params = {
+            'host': Config.REDIS_HOST,
+            'port': Config.REDIS_PORT,
+            'password': str(Config.REDIS_PASS) if Config.REDIS_PASS else None,
+            'socket_timeout': 10,
+            'health_check_interval': 30,
+            'decode_responses': False,
+            'ssl': False,
+            'socket_keepalive': True
+        }
+
+        self.logger.debug(f"Connecting to Redis at {Config.REDIS_HOST}:{Config.REDIS_PORT}")
+
+        for attempt in range(3):
+            try:
+                r = redis.Redis(**redis_params)
+                
+                # Test connection explicitly
+                if not r.ping():
+                    raise redis.ConnectionError("Redis ping failed")
+                
+                try:
+                    r.xgroup_create(
+                        name=Config.REDIS_STREAM,
+                        groupname=Config.REDIS_GROUP,
+                        id='$',
+                        mkstream=True
+                    )
+                    self.logger.info("🔌 Redis Streams Mode Activated")
+                    return {'conn': r, 'mode': 'stream'}
+                
+                except redis.exceptions.ResponseError as e:
+                    if "BUSYGROUP" not in str(e):
+                        self.logger.warning(f"🔄 Falling back to Pub/Sub: {str(e)}")
+                    return {'conn': r.pubsub(), 'mode': 'pubsub'}
+
+            except Exception as e:
+                self.logger.error(f"♻️ Connection attempt {attempt+1}/3 failed: {str(e)}")
+                time.sleep(2)
+
+        raise ConnectionError("Could not establish Redis connection")
+
+    def _init_zmq(self):
+        """Initialize ZMQ with robust error handling"""
+        context = zmq.Context()
+        socket = context.socket(zmq.PUSH)
+        
+        # Critical socket options
+        socket.setsockopt(zmq.LINGER, 100)
+        socket.setsockopt(zmq.SNDHWM, 1000)
+        socket.setsockopt(zmq.ZMQ_REUSEADDR, 1)
+        
+        if Config.ZMQ_CURVE_SECRET and Config.ZMQ_CURVE_PUBLIC:
+            try:
+                socket.setsockopt(zmq.CURVE_SECRETKEY, Config.ZMQ_CURVE_SECRET.encode())
+                socket.setsockopt(zmq.CURVE_PUBLICKEY, Config.ZMQ_CURVE_PUBLIC.encode())
+                socket.setsockopt(zmq.CURVE_SERVER, 1)
+                self.logger.debug("🔐 ZMQ Curve security enabled")
+            except Exception as e:
+                self.logger.error(f"⚠️ ZMQ Curve error: {str(e)}")
+                raise
+
+        # Robust binding with retry logic
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                socket.bind(Config.ZMQ_BIND)
+                self.logger.info(f"📡 ZMQ bound to {Config.ZMQ_BIND}")
+                return context, socket
+                
+            except zmq.ZMQError as e:
+                if "Address already in use" in str(e):
+                    self.logger.warning(f"⚠️ Port in use, retry {attempt + 1}/{max_retries}...")
+                    time.sleep(1)
+                    if attempt == max_retries - 1:
+                        raise ConnectionError(f"Failed to bind ZMQ after {max_retries} attempts")
+                    continue
+                raise
+
+# ============ CORE ENGINE ============
+class BridgeEngine:
+    def __init__(self):
+        self.logger = logging.getLogger("BridgeEngine")
+        try:
+            self.crypto = CryptoManager.load_fernet()
+            self.connections = ConnectionManager(self.crypto)
+            self.last_health_check = time.time()
+            self.message_count = 0
+            self.running = True
+            self.logger.info("✅ Service initialized successfully")
+        except Exception as e:
+            self.logger.critical(f"💥 Initialization failed: {str(e)}")
+            raise
+
+    def process_stream_messages(self):
+        """Process Redis Streams messages"""
+        while self.running:
+            try:
+                messages = self.connections.redis['conn'].xreadgroup(
+                    groupname=Config.REDIS_GROUP,
+                    consumername=Config.REDIS_CONSUMER,
+                    streams={Config.REDIS_STREAM: '>'},
+                    count=100,
+                    block=5000
+                )
+
+                if messages:
+                    self._handle_messages(messages[0][1])
+
+                self._health_check()
+
+            except redis.exceptions.ConnectionError:
+                self.logger.warning("♻️ Redis connection lost, reconnecting...")
+                try:
+                    self.connections = ConnectionManager(self.crypto)
+                except Exception as e:
+                    self.logger.error(f"⚠️ Reconnection failed: {str(e)}")
+                    time.sleep(5)
+
+    def process_pubsub_messages(self):
+        """Process Redis Pub/Sub messages"""
+        self.connections.redis['conn'].subscribe(Config.REDIS_CHANNEL)
+
+        while self.running:
+            try:
+                message = self.connections.redis['conn'].get_message(
+                    ignore_subscribe_messages=True,
+                    timeout=5.0
+                )
+
+                if message:
+                    self._handle_single_message(message['data'])
+
+                self._health_check()
+
+            except Exception as e:
+                self.logger.error(f"⚠️ Pub/Sub Error: {str(e)}")
+                time.sleep(1)
+
+    def _handle_messages(self, messages):
+        for msg_id, msg_data in messages:
+            try:
+                if b'encrypted' in msg_data:
+                    self._process_encrypted(msg_data[b'encrypted'])
+                    self.connections.redis['conn'].xack(
+                        Config.REDIS_STREAM,
+                        Config.REDIS_GROUP,
+                        msg_id
+                    )
+                else:
+                    self.logger.warning("⚠️ Unencrypted message received")
+            except Exception as e:
+                self.logger.error(f"❌ Message processing failed: {str(e)}")
+
+    def _process_encrypted(self, encrypted_data):
+        """Decrypt and forward message"""
+        try:
+            decrypted = self.crypto.decrypt(encrypted_data)
+            signal = json.loads(decrypted.decode('utf-8'))
+            
+            if not all(k in signal for k in ('symbol', 'action', 'volume')):
+                raise ValueError("Invalid signal format")
+            
+            self.connections.zmq_socket.send_json(signal)
+            self.message_count += 1
+            self.logger.debug(f"📤 Forwarded: {signal['symbol']} {signal['action']}")
+            
+        except Exception as e:
+            self.logger.error(f"❌ Decryption failed: {str(e)}")
+
+    def _health_check(self):
+        """Periodic system checks"""
+        if time.time() - self.last_health_check > 60:
+            status = {
+                'redis': bool(self.connections.redis['conn'].ping()),
+                'zmq': self.connections.zmq_socket.get(zmq.EVENTS),
+                'messages': self.message_count,
+                'uptime': int(time.time() - self.last_health_check)
+            }
+            self.logger.info(f"🩺 Health Check: {status}")
+            self.last_health_check = time.time()
+
+    def shutdown(self):
+        """Graceful shutdown procedure"""
+        self.logger.info("🛑 Initiating shutdown...")
+        self.running = False
+        
+        try:
+            # Close ZMQ socket
+            if hasattr(self.connections, 'zmq_socket'):
+                self.connections.zmq_socket.setsockopt(zmq.LINGER, 100)
+                self.connections.zmq_socket.close()
+            
+            # Terminate ZMQ context
+            if hasattr(self.connections, 'zmq_context'):
+                self.connections.zmq_context.term()
+            
+            # Close Redis connection
+            if hasattr(self.connections, 'redis') and isinstance(self.connections.redis, dict):
+                if 'conn' in self.connections.redis:
+                    self.connections.redis['conn'].close()
+            
+            self.logger.info("🔌 All connections closed")
+        except Exception as e:
+            self.logger.error(f"⚠️ Shutdown error: {str(e)}")
+
+    def run(self):
+        try:
+            self.logger.info("🚀 Starting bridge service")
+            
+            if self.connections.redis['mode'] == 'stream':
+                self.process_stream_messages()
+            else:
+                self.process_pubsub_messages()
+                
+        except KeyboardInterrupt:
+            self.logger.info("🛑 Received interrupt signal")
+        except Exception as e:
+            self.logger.critical(f"💥 Fatal error: {str(e)}")
+        finally:
+            self.shutdown()
+
+# ============ MAIN ============
+if __name__ == "__main__":
+    try:
+        LogSetup()
+        bridge = BridgeEngine()
+        bridge.run()
+    except Exception as e:
+        logging.critical(f"🔴 Critical startup error: {str(e)}")
+        raise

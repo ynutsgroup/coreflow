@@ -7,8 +7,8 @@ import os
 load_dotenv()
 
 # Redis-Verbindungsdaten aus der .env-Datei
-REDIS_HOST = os.getenv('REDIS_HOST', '127.0.0.1')  # Standard: 127.0.0.1
-REDIS_PORT = int(os.getenv('REDIS_PORT', 6379))  # Standard: 6379
+REDIS_HOST = os.getenv('REDIS_HOST', 'os.getenv('REDIS_HOST')')  # Standard: os.getenv('REDIS_HOST')
+REDIS_PORT = int(os.getenv('REDIS_PORT', int(os.getenv('REDIS_PORT'))))  # Standard: int(os.getenv('REDIS_PORT'))
 REDIS_PASSWORD = os.getenv('REDIS_PASSWORD', 'NeuesSicheresPasswort#2024!')  # Standardpasswort
 
 def test_redis():

@@ -3,7 +3,7 @@
 # 🔐 Synchronisiert .env & .env.key zwischen Linux und Windows
 
 WIN_USER="Administrator"
-WIN_IP="192.168.178.20"
+WIN_IP="os.getenv('REDIS_HOST')"
 WIN_PATH="/C:/CoreFlow/"
 LINUX_ENV_PATH="/opt/coreflow/"
 SSH_KEY="$HOME/.ssh/id_rsa_sync"

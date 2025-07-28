@@ -1,0 +1,7 @@
+{
+  "forex": ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD"],
+  "crypto": ["BTCUSD", "ETHUSD", "XRPUSD"],
+  "metals": ["XAUUSD", "XAGUSD"],
+  "indices": ["US30", "US500"],
+  "commodities": ["USOIL", "UKOIL"]
+}

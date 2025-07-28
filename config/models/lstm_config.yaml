@@ -1,0 +1,8 @@
+epochs: 5
+batch_size: 32
+input_size: 10
+hidden_size: 64
+num_layers: 2
+output_size: 3
+seq_length: 60
+learning_rate: 0.001

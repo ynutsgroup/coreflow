@@ -1,62 +1,34 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-encrypt_env.py – Verschlüsselt eine .env-Datei mit Fernet
-Speichert Ergebnis als .env.enc für sichere Nutzung durch decrypt_env.py
+🔐 Encrypts .env to .env.enc using Fernet
 """
 
 import os
 from cryptography.fernet import Fernet
-import logging
+from pathlib import Path
 
-# === Logging (Konsolenausgabe) ===
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)-8s | %(message)s"
-)
-logger = logging.getLogger("EnvEncryptor")
+# === Pfade definieren ===
+env_path = Path("/opt/coreflow/.env")
+enc_path = Path("/opt/coreflow/.env.enc")
+key_path = Path("/opt/coreflow/infra/vault/encryption.key")
 
-# === Pfade ===
-ENV_PATH = "/opt/coreflow/.env"
-ENC_PATH = "/opt/coreflow/.env.enc"
-KEY_PATH = "/opt/coreflow/infra/vault/encryption.key"
+# === Schlüssel laden ===
+if not key_path.exists():
+    print(f"❌ Key-Datei nicht gefunden: {key_path}")
+    exit(1)
 
-# === Schlüssel erzeugen (einmalig) ===
-def generate_key(path: str):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    if os.path.exists(path):
-        logger.info(f"🔐 Schlüssel existiert bereits: {path}")
-        return
-    key = Fernet.generate_key()
-    with open(path, "wb") as f:
-        f.write(key)
-    logger.info(f"✅ Neuer Fernet-Schlüssel gespeichert: {path}")
+key = key_path.read_bytes()
+fernet = Fernet(key)
 
-# === .env verschlüsseln ===
-def encrypt_env(env_path: str, key_path: str, out_path: str):
-    if not os.path.exists(env_path):
-        logger.critical(f"❌ .env-Datei nicht gefunden: {env_path}")
-        return
+# === .env laden und verschlüsseln ===
+if not env_path.exists():
+    print(f"❌ .env-Datei fehlt: {env_path}")
+    exit(1)
 
-    try:
-        with open(key_path, "rb") as f:
-            key = f.read()
-        fernet = Fernet(key)
+plain = env_path.read_bytes()
+encrypted = fernet.encrypt(plain)
 
-        with open(env_path, "rb") as f:
-            plaintext = f.read()
-
-        encrypted = fernet.encrypt(plaintext)
-
-        with open(out_path, "wb") as f:
-            f.write(encrypted)
-
-        logger.info(f"✅ .env erfolgreich verschlüsselt → {out_path}")
-
-    except Exception as e:
-        logger.critical(f"❌ Verschlüsselung fehlgeschlagen: {e}")
-
-# === Main ===
-if __name__ == "__main__":
-    generate_key(KEY_PATH)
-    encrypt_env(ENV_PATH, KEY_PATH, ENC_PATH)
+# === .env.enc speichern ===
+enc_path.write_bytes(encrypted)
+print(f"✅ Verschlüsselt: {enc_path} ({enc_path.stat().st_size} bytes)")

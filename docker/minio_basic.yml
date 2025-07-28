@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  minio:
+    image: minio/minio:RELEASE.2024-06-11T03-13-30Z
+    container_name: minio
+    hostname: minio
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # Web UI
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+      MINIO_SERVER_URL: http://10.10.10.1:9000
+      MINIO_BROWSER_REDIRECT_URL: http://10.10.10.1:9001
+      MINIO_PROMETHEUS_AUTH_TYPE: "public"
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - minio_network
+
+  mc:
+    image: minio/mc
+    container_name: mc
+    environment:
+      MC_HOST_minio: http://${MINIO_ROOT_USER}:${MINIO_ROOT_PASSWORD}@minio:9000
+    depends_on:
+      minio:
+        condition: service_healthy
+    networks:
+      - minio_network
+    volumes:
+      - mc_config:/root/.mc
+    entrypoint: >
+      /bin/sh -c "
+      until (/usr/bin/mc config host add minio http://minio:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD}) do echo 'Waiting for MinIO...' && sleep 1; done &&
+      /usr/bin/mc admin info minio &&
+      tail -f /dev/null
+      "
+
+volumes:
+  minio_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/data/minio
+  mc_config:
+
+networks:
+  minio_network:
+    driver: bridge

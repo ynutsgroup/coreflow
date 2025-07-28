@@ -1,0 +1,218 @@
+#!/usr/bin/env python3
+# CoreFlow ProSignal RTX A4000 Enterprise Edition
+# Integriert: Telegram-Alerts • Prometheus • MLflow • FTMO-Compliance
+
+import os
+import sys
+import json
+import redis
+import logging
+import time
+import torch
+import requests
+from datetime import datetime, timezone, time as dtime
+from cryptography.fernet import Fernet
+from pathlib import Path
+from prometheus_client import start_http_server, Gauge
+import mlflow
+import subprocess
+
+# ======================
+# KONFIGURATION
+# ======================
+os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
+
+# Pfade
+KEY_PATH = "/opt/coreflow/infra/vault/encryption.key"
+ENC_PATH = "/opt/coreflow/.env.enc"
+LOG_PATH = "/opt/coreflow/logs/signal_emitter.log"
+
+PROMETHEUS_PORT = 9090
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000")
+TELEGRAM_API_URL = "https://api.telegram.org/bot{}/sendMessage"
+ALERT_CHAT_IDS = [-100123456789]
+
+# ======================
+# PROMETHEUS METRIKEN
+# ======================
+GPU_TEMP = Gauge('gpu_temp_celsius', 'GPU Temperatur in °C')
+GPU_MEM_USAGE = Gauge('gpu_mem_usage', 'GPU Speichernutzung in MB')
+SIGNAL_LATENCY = Gauge('signal_latency_ms', 'Signalverarbeitungslatenz')
+REDIS_LATENCY = Gauge('redis_latency_ms', 'Redis Latenz')
+
+# ======================
+# INITIALISIERUNG
+# ======================
+Path(LOG_PATH).parent.mkdir(parents=True, exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s | %(levelname)-8s | %(name)-18s | %(message)s',
+    handlers=[logging.FileHandler(LOG_PATH, encoding='utf-8'), logging.StreamHandler()]
+)
+logger = logging.getLogger("CoreFlow-ProSignal")
+
+start_http_server(PROMETHEUS_PORT)
+logger.info(f"📊 Prometheus Metrics verfügbar unter :{PROMETHEUS_PORT}")
+
+mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+logger.info(f"🔍 MLflow Tracking aktiviert: {MLFLOW_TRACKING_URI}")
+
+# ======================
+# ENV-Verschlüsselung
+# ======================
+def decrypt_env(enc_path: str, key_path: str) -> dict:
+    with open(key_path, 'rb') as f:
+        key = f.read()
+    fernet = Fernet(key)
+    with open(enc_path, 'rb') as ef:
+        decrypted = fernet.decrypt(ef.read()).decode()
+    return dict(line.split('=', 1) for line in decrypted.strip().split('\n') if '=' in line)
+
+env_vars = decrypt_env(ENC_PATH, KEY_PATH)
+for k, v in env_vars.items():
+    os.environ[k] = v
+
+# ======================
+# GPU-ÜBERWACHUNG
+# ======================
+def get_gpu_metrics():
+    try:
+        output = subprocess.check_output(
+            ["nvidia-smi", "--query-gpu=temperature.gpu,memory.used", "--format=csv,noheader,nounits"],
+            encoding="utf-8"
+        )
+        temp_str, mem_str = output.strip().split(',')
+        temp = float(temp_str)
+        mem_used = float(mem_str)
+        GPU_TEMP.set(temp)
+        GPU_MEM_USAGE.set(mem_used)
+        return temp, mem_used
+    except Exception as e:
+        logger.warning(f"GPU-Metrikfehler: {e}")
+        return 0, 0
+
+# ======================
+# TELEGRAM-ALERTS
+# ======================
+def send_telegram_alert(message, alert_type="INFO"):
+    try:
+        bot_token = os.getenv("TELEGRAM_TOKEN")
+        if not bot_token:
+            logger.warning("Telegram-Token fehlt")
+            return
+        emoji = {"INFO": "ℹ️", "WARNING": "⚠️", "ERROR": "🚨"}.get(alert_type.upper(), "")
+        payload = {
+            "chat_id": ALERT_CHAT_IDS[0],
+            "text": f"{emoji} [CoreFlow] {message}",
+            "parse_mode": "HTML"
+        }
+        requests.post(TELEGRAM_API_URL.format(bot_token), json=payload, timeout=5)
+    except Exception as e:
+        logger.error(f"Telegram Fehler: {str(e)}")
+
+# ======================
+# MLflow METRICS
+# ======================
+def log_model_metrics(confidence, model_version):
+    try:
+        with mlflow.start_run():
+            mlflow.log_metric("signal_confidence", confidence)
+            mlflow.log_param("model_version", model_version)
+            mlflow.log_artifact(LOG_PATH)
+            gpu_temp, gpu_mem = get_gpu_metrics()
+            mlflow.log_metrics({"gpu_temp": gpu_temp, "gpu_mem_usage": gpu_mem})
+    except Exception as e:
+        logger.error(f"MLflow-Fehler: {str(e)}")
+
+# ======================
+# FTMO HANDELSZEITEN
+# ======================
+def is_trading_time(symbol: str) -> bool:
+    try:
+        window = os.getenv("FTMO_TRADE_WINDOW", "08:00-22:00")
+        start, end = [dtime.fromisoformat(t) for t in window.split('-')]
+        now = datetime.utcnow().time()
+        return start <= now <= end
+    except Exception as e:
+        logger.warning(f"Handelszeitfehler: {e}")
+        return True
+
+# ======================
+# SIGNAL GENERIEREN
+# ======================
+def generate_signal(args):
+    symbol, action, lot, confidence = args[0], args[1], float(args[2]), float(args[3])
+    return {
+        "symbol": symbol,
+        "action": action.upper(),
+        "lot": lot,
+        "confidence": confidence,
+        "version": "v3.1",
+        "timestamp": datetime.now(timezone.utc).isoformat()
+    }
+
+# ======================
+# REDIS SENDEN
+# ======================
+def send_signal(signal):
+    try:
+        redis_client = redis.StrictRedis(
+            host=os.getenv("REDIS_HOST"),
+            port=int(os.getenv("REDIS_PORT")),
+            password=os.getenv("REDIS_PASSWORD"),
+            decode_responses=True
+        )
+        redis_client.ping()
+        channel = os.getenv("REDIS_CHANNEL", f"{signal['symbol'].lower()}_signals")
+        redis_client.publish(channel, json.dumps(signal))
+        logger.info(f"📤 Signal gesendet: {signal}")
+        return True
+    except Exception as e:
+        logger.error(f"Redis-Fehler: {e}")
+        return False
+
+# ======================
+# SIGNALVERARBEITUNG
+# ======================
+def process_signal(args):
+    start_time = time.time()
+    signal = generate_signal(args)
+    if not signal:
+        send_telegram_alert("Signalvalidierung fehlgeschlagen", "ERROR")
+        return False
+    log_model_metrics(signal["confidence"], signal["version"])
+    redis_start = time.time()
+    success = send_signal(signal)
+    REDIS_LATENCY.set((time.time() - redis_start) * 1000)
+    if success:
+        latency = (time.time() - start_time) * 1000
+        SIGNAL_LATENCY.set(latency)
+        msg = (f"Neues Signal: {signal['symbol']} {signal['action']}\n"
+               f"Lot: {signal['lot']} | Conf: {signal['confidence']*100:.1f}%\n"
+               f"Latenz: {latency:.2f}ms")
+        send_telegram_alert(msg)
+        return True
+    return False
+
+# ======================
+# HAUPTPROZESS
+# ======================
+def main():
+    args = [arg for arg in sys.argv[1:] if arg != "--backtest"]
+    if len(args) < 4:
+        logger.error("Nutzung: signal_emitter.py SYMBOL ACTION LOT CONFIDENCE")
+        send_telegram_alert("Befehlszeile fehlerhaft!", "ERROR")
+        sys.exit(1)
+    if not is_trading_time(args[0]):
+        logger.info("⏳ Nicht innerhalb Handelszeiten")
+        sys.exit(0)
+    gpu_temp, _ = get_gpu_metrics()
+    if gpu_temp > 85:
+        send_telegram_alert(f"⚠️ GPU-Temperatur kritisch: {gpu_temp}°C", "WARNING")
+    if not process_signal(args):
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

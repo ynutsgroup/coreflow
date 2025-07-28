@@ -151,3 +151,15 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         monitor.stop()
         print("Performance:", monitor.get_performance_stats())
+
+import subprocess
+
+def run_log_cleanup():
+    try:
+        subprocess.run(["/opt/coreflow/utils/clean_all_logs.sh"], check=True)
+        logger.info("🧹 Log-Cleanup erfolgreich ausgeführt.")
+    except Exception as e:
+        logger.error(f"⚠️ Fehler beim Log-Cleanup: {e}")
+
+# Rufe die Log-Cleanup-Funktion auf
+run_log_cleanup()

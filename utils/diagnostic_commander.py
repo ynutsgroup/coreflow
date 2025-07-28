@@ -13,7 +13,7 @@ class DiagnosticCommander:
         load_dotenv(dotenv_path=env_path)
 
         self.redis_host = os.getenv("REDIS_HOST", "localhost")
-        self.redis_port = int(os.getenv("REDIS_PORT", "6379"))
+        self.redis_port = int(os.getenv("REDIS_PORT", "int(os.getenv('REDIS_PORT'))"))
         self.redis_password = os.getenv("REDIS_PASSWORD")
         self.telegram_token = os.getenv("TELEGRAM_TOKEN")
         self.telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")

@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 ENV_PATH = "/opt/coreflow/.env"
 load_dotenv(ENV_PATH)
 
-REDIS_HOST = os.getenv("REDIS_HOST", "192.168.178.19")
-REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
+REDIS_HOST = os.getenv("REDIS_HOST", "os.getenv('REDIS_HOST')")
+REDIS_PORT = int(os.getenv("REDIS_PORT", "int(os.getenv('REDIS_PORT'))"))
 REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", "NeuesSicheresPasswort#2024!")
 REDIS_CHANNEL = "coreflow.env.sync"
 

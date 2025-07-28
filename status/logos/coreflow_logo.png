@@ -1,0 +1,1 @@
+(crontab -l 2>/dev/null; echo "*/30 * * * * /opt/coreflow/.venv/bin/python /opt/coreflow/status/scripts/dashboard.py") | crontab -

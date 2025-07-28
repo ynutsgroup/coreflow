@@ -1,0 +1,4 @@
+redis:
+  host: 127.0.0.1  # or 10.10.10.50 for remote
+  port: 6380
+  password: "ncasInitHW!"

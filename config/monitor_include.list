@@ -1,0 +1,10 @@
+# Kernkomponenten
+/opt/coreflow/core/**
+/opt/coreflow/utils/**
+
+# Ausschlüsse
+!**/tests/
+!**/*test_*
+!**/*debug_*
+!**/backups/
+!**/.venv/

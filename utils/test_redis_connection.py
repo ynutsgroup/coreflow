@@ -1,8 +1,8 @@
 import redis
 
 # Direkte Redis-Verbindungsdaten
-REDIS_HOST = '127.0.0.1'
-REDIS_PORT = 6379
+REDIS_HOST = 'os.getenv('REDIS_HOST')'
+REDIS_PORT = int(os.getenv('REDIS_PORT'))
 REDIS_PASSWORD = 'NeuesSicheresPasswort#2024!'
 
 def test_redis_connection():

@@ -1,0 +1,62 @@
+[
+  {
+    "timestamp": "2025-06-26T21:52:08.804092Z",
+    "model_key": "lstm:trading:model",
+    "checksum": "adb931bc1cc5cfa6dafa7aa2c4afc0548f0603c15b30e827ed84931421068f38",
+    "status": "failed: Redis connection failed: Redis.__init__() got an unexpected keyword argument 'timeout'",
+    "environment": {
+      "redisai_version": "1.3.0",
+      "onnx_version": "1.18.0"
+    }
+  },
+  {
+    "timestamp": "2025-06-26T21:54:27.260585Z",
+    "model_key": "lstm:trading:model",
+    "checksum": "adb931bc1cc5cfa6dafa7aa2c4afc0548f0603c15b30e827ed84931421068f38",
+    "status": "failed: Redis connection failed: Redis.__init__() got an unexpected keyword argument 'timeout'",
+    "environment": {
+      "redisai_version": "1.3.0",
+      "onnx_version": "1.18.0"
+    }
+  },
+  {
+    "timestamp": "2025-06-26T21:55:35.399975Z",
+    "model_key": "lstm:trading:model",
+    "checksum": "adb931bc1cc5cfa6dafa7aa2c4afc0548f0603c15b30e827ed84931421068f38",
+    "status": "failed: Redis connection failed: Redis.__init__() got an unexpected keyword argument 'timeout'",
+    "environment": {
+      "redisai_version": "1.3.0",
+      "onnx_version": "1.18.0"
+    }
+  },
+  {
+    "timestamp": "2025-06-26T21:59:58.176228+00:00",
+    "model_key": "lstm:trading:model",
+    "checksum": "adb931bc1cc5cfa6dafa7aa2c4afc0548f0603c15b30e827ed84931421068f38",
+    "status": "failed: Redis connection failed: Authentication required.",
+    "environment": {
+      "redisai_version": "1.3.0",
+      "onnx_version": "1.18.0"
+    }
+  },
+  {
+    "timestamp": "2025-06-26T22:08:22.924145+00:00",
+    "model_key": "lstm:trading:model",
+    "checksum": "adb931bc1cc5cfa6dafa7aa2c4afc0548f0603c15b30e827ed84931421068f38",
+    "status": "failed: Redis connection failed: Authentication required.",
+    "environment": {
+      "redisai_version": "1.3.0",
+      "onnx_version": "1.18.0"
+    }
+  },
+  {
+    "timestamp": "2025-06-26T22:11:15.870272Z",
+    "model_key": "lstm:trading:model",
+    "checksum": "adb931bc1cc5cfa6dafa7aa2c4afc0548f0603c15b30e827ed84931421068f38",
+    "status": "failed: unknown command 'AI.MODELSET', with args beginning with: 'lstm:trading:model' 'onnx' 'cpu' 'BLOB' '\b\u0007\u0012\u0007pytorch\u001a\u00052.7.1:\ufffd\ufffd  ' \u0005input\u0012\u000f/Shape_output_0\u001a\u0006/Shape\"\u0005Shape C\u0012\u0012/Constant_output_0\u001a\t' ",
+    "environment": {
+      "redisai_version": "1.3.0",
+      "onnx_version": "1.18.0"
+    }
+  }
+]

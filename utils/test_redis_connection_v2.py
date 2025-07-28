@@ -5,8 +5,8 @@ def test_connection():
     try:
         # Verbindung mit Timeout
         r = redis.Redis(
-            host='127.0.0.1',
-            port=6379,
+            host='os.getenv('REDIS_HOST')',
+            port=int(os.getenv('REDIS_PORT')),
             socket_timeout=3,
             socket_connect_timeout=3
         )
@@ -28,7 +28,7 @@ def test_connection():
         print("Bitte prüfen Sie:")
         print("1. Ist Redis installiert? (redis-server --version)")
         print("2. Läuft der Service? (sudo systemctl status redis-server)")
-        print("3. Hört Redis auf Port 6379? (sudo ss -tulnp | grep 6379)")
+        print("3. Hört Redis auf Port int(os.getenv('REDIS_PORT'))? (sudo ss -tulnp | grep int(os.getenv('REDIS_PORT')))")
         return False
     except Exception as e:
         print(f"❌ Unerwarteter Fehler: {str(e)}")

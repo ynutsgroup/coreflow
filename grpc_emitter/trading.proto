@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service TradingService {
+  rpc SendSignal (SignalRequest) returns (SignalResponse);
+}
+
+message SignalRequest {
+  string symbol = 1;
+}
+
+message SignalResponse {
+  string action = 1; // "BUY", "SELL", "HOLD"
+}

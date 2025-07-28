@@ -6,7 +6,7 @@ import subprocess
 import datetime
 
 # Konfiguration
-windows_ip = "192.168.178.20"
+windows_ip = "os.getenv('REDIS_HOST')"
 windows_user = "Administrator"
 remote_dir = "/C/CoreFlow"
 remote_env = f"{windows_user}@{windows_ip}:{remote_dir}/.env"
