@@ -17,19 +17,22 @@ from pathlib import Path
 from typing import Callable
 from concurrent.futures import ThreadPoolExecutor
 
-# === 🔐 Dynamischer Import des verschlüsselten .env Loaders ===
+# === 🔐 Zentrale verschlüsselte ENV-Ladung ===
 decrypt_path = Path("/opt/coreflow/utils")
 if decrypt_path.exists():
     sys.path.insert(0, str(decrypt_path))
 else:
     raise FileNotFoundError(f"❌ decrypt_env.py nicht gefunden: {decrypt_path}")
 
-from decrypt_env import load_env, find_latest_env_enc
-
-env_path = find_latest_env_enc()
-if not env_path:
-    raise FileNotFoundError("❌ Keine gültige .env.enc-Datei gefunden.")
-env = load_env(env_path, "/opt/coreflow/infra/vault/encryption.key")
+try:
+    from decrypt_env import load_env, find_latest_env_enc
+    env_path = find_latest_env_enc()
+    if not env_path:
+        raise FileNotFoundError("❌ Keine gültige .env.enc-Datei gefunden.")
+    if not load_env(env_path, "/opt/coreflow/infra/vault/encryption.key"):
+        raise RuntimeError("❌ .env.enc konnte nicht geladen werden.")
+except Exception as e:
+    raise SystemExit(f"❌ ENV-Fehler: {e}")
 
 # === Redis-Client vorbereiten ===
 from redis.commands.ts.client import TsClient
