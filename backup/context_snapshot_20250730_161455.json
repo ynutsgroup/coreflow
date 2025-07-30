@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "host": "corelinux",
+    "created_utc": "2025-07-30T16:14:55Z",
+    "python": "3.12.3"
+  },
+  "paths": {
+    "coreflow_main.py": {
+      "path": "/opt/coreflow/core/coreflow_main.py",
+      "exists": true,
+      "size": 8478,
+      "mtime": "2025-07-05T17:58:35Z",
+      "sha1": "f4c1ac030f54c98fa9b690e2fc5ecf6097e33a43"
+    },
+    "valg_engine.py": {
+      "path": "/opt/coreflow/core/valg_engine.py",
+      "exists": false,
+      "size": null,
+      "mtime": null,
+      "sha1": null
+    },
+    "lstm_predictor.py": {
+      "path": "/opt/coreflow/core/lstm_predictor.py",
+      "exists": false,
+      "size": null,
+      "mtime": null,
+      "sha1": null
+    },
+    "envloader.py": {
+      "path": "/opt/coreflow/utils/envloader.py",
+      "exists": true,
+      "size": 1793,
+      "mtime": "2025-07-29T15:29:59Z",
+      "sha1": "1d9268adc71c96f29f0868373cde389c39c0e01d"
+    },
+    "decrypt_env.py": {
+      "path": "/opt/coreflow/utils/decrypt_env.py",
+      "exists": false,
+      "size": null,
+      "mtime": null,
+      "sha1": null
+    },
+    "timeseries_interface.py": {
+      "path": "/opt/coreflow/modules/timeseries/timeseries_interface.py",
+      "exists": true,
+      "size": 9097,
+      "mtime": "2025-07-27T11:53:26Z",
+      "sha1": "f1082950ec7657c10fd9b267276dcf97a70212c9"
+    },
+    "ts_aggregator.py": {
+      "path": "/opt/coreflow/modules/timeseries/ts_aggregator.py",
+      "exists": true,
+      "size": 3904,
+      "mtime": "2025-07-29T15:29:59Z",
+      "sha1": "04ed90ae06177531c793bab81d87de6529911636"
+    },
+    "timeseries_plotter.py": {
+      "path": "/opt/coreflow/modules/timeseries/timeseries_plotter.py",
+      "exists": true,
+      "size": 8418,
+      "mtime": "2025-07-27T11:50:19Z",
+      "sha1": "c87ee7e15d3607ed8fba25f1a0312c640935bb0b"
+    },
+    "market_hours_guard.py": {
+      "path": "/opt/coreflow/utils/market_hours_guard.py",
+      "exists": true,
+      "size": 3545,
+      "mtime": "2025-06-01T18:51:02Z",
+      "sha1": "b6a5d983d9a1e78a838ea397c93ed978e23a2abb"
+    },
+    "signal_emitter.py": {
+      "path": "/opt/coreflow/core/signal_emitter.py",
+      "exists": true,
+      "size": 781,
+      "mtime": "2025-07-25T19:45:44Z",
+      "sha1": "e3f6178703efdc05842d5f56115c3f4db622b6e5"
+    },
+    "signal_receiver_bridge.md": {
+      "path": "/opt/coreflow/docs/signal_receiver_bridge.md",
+      "exists": false,
+      "size": null,
+      "mtime": null,
+      "sha1": null
+    },
+    "watchdog.py": {
+      "path": "/opt/coreflow/utils/watchdog.py",
+      "exists": false,
+      "size": null,
+      "mtime": null,
+      "sha1": null
+    },
+    ".env.enc": {
+      "path": "/opt/coreflow/.env.enc",
+      "exists": true,
+      "size": 3768,
+      "mtime": "2025-07-27T09:52:59Z",
+      "sha1": "6e5ebdb3af1578380a37224e9a9bd4d0de78e056"
+    },
+    ".env": {
+      "path": "/opt/coreflow/.env",
+      "exists": true,
+      "size": 2760,
+      "mtime": "2025-07-27T09:51:57Z",
+      "sha1": "e5c66d1e926dd1250014afc3ea0d4bca6a5871dc"
+    },
+    "PROJECT_README.md": {
+      "path": "/opt/coreflow/PROJECT_README.md",
+      "exists": false,
+      "size": null,
+      "mtime": null,
+      "sha1": null
+    },
+    "COREFlow_CONTEXT.md": {
+      "path": "/opt/coreflow/COREFlow_CONTEXT.md",
+      "exists": false,
+      "size": null,
+      "mtime": null,
+      "sha1": null
+    }
+  },
+  "summary": {
+    "ok": [
+      "coreflow_main.py",
+      "envloader.py",
+      "timeseries_interface.py",
+      "ts_aggregator.py",
+      "timeseries_plotter.py",
+      "market_hours_guard.py",
+      "signal_emitter.py",
+      ".env.enc",
+      ".env"
+    ],
+    "missing": [
+      "valg_engine.py",
+      "lstm_predictor.py",
+      "decrypt_env.py",
+      "signal_receiver_bridge.md",
+      "watchdog.py",
+      "PROJECT_README.md",
+      "COREFlow_CONTEXT.md"
+    ],
+    "counts": {
+      "ok": 9,
+      "missing": 7,
+      "total": 16
+    }
+  }
+}
